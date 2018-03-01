@@ -1,8 +1,17 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import thunk from "redux-thunk";
+import Home from "./pages/homePage";
 
 class App extends Component {
   render() {
-    return <div className="App" />;
+    return (
+      <Router>
+        <div className="App">
+          <Route path="/" exact component={Home} />
+        </div>
+      </Router>
+    );
   }
 }
 
