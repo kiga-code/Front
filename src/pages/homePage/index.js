@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import FacebookLogin from 'react-facebook-login';
 
 const responseFacebook = response => {
-  console.log(response);
+  console.log(1)
 };
 class Home extends Component {
   render() {
