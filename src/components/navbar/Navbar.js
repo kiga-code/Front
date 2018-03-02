@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./styles/Navbar.css";
+import "./styles/Navbar.scss";
 
 class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar">
+      <nav className="Navbar">
         <ul>
           <li>Home</li>
           <li>Kiga</li>
