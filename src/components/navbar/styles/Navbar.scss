@@ -49,7 +49,14 @@
   h1 {
     font-size: 2rem;
   }
-
+  .picture-icon {
+    background: #fff;
+    border-radius: 60px;
+    height: 50px;
+    border: 1px solid #fff;
+    width: 50px;
+    object-fit: cover;
+  }
   .my-facebook-button-class {
     background: transparent;
     height: 38px;

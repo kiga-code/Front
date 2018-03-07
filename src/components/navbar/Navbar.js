@@ -22,6 +22,7 @@ class Navbar extends Component {
           </Link>
         </ul>
 
+      
         <FacebookLogin
           appId="220764528493510"
           fields="name,email,picture"
@@ -31,6 +32,8 @@ class Navbar extends Component {
           cssClass="my-facebook-button-class"
           size="small"
         />
+
+        <img src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg" className="picture-icon" alt="UserPicture" />
       </nav>
     );
   }
