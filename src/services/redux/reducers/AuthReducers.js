@@ -1,7 +1,7 @@
 import { FCB_AUTH, FCB_AUTH_FAILED, LOGOUT } from "../actions/actionTypes";
 
 const initialState = {
-  token: localStorage.getItem("acess-token")
+  token: localStorage.getItem("acessToken")
     ? localStorage.getItem("acess-token")
     : null,
   done: false,
