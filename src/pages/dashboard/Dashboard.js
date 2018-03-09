@@ -15,8 +15,8 @@ class Dashboard extends Component {
     let data = JSON.parse(localStorage.getItem("acessToken"));
     console.log(data);
     this.setState({
-      name: data.acessToken.name,
-      picture: data.acessToken.picture
+      name: this.state.name,
+      picture: this.state.pictureZA
     });
   }
 

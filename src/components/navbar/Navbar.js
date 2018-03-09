@@ -4,6 +4,7 @@ import FacebookLogin from "react-facebook-login";
 import { Link } from "react-router-dom";
 import * as AuthActions from "../../services/redux/actions/AuthActions";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Navbar extends Component {
   constructor(props) {
@@ -15,21 +16,18 @@ class Navbar extends Component {
     this.signup = this.signup.bind(this);
   }
 
-  signup(res, type) {
+  signup(res) {
     let postData;
-    if (type === "facebook" && res.email) {
-      postData = {
-        name: res.name,
-        email: res.email,
-        picture: res.picture,
-        token: res.acessToken
-      };
-    }
 
-    if (postData) {
-      this.dispach(AuthActions.loginFacebook());
-      this.setState({ redirect: true });
-    }
+    postData = {
+      firstName: res.name,
+      email: res.email,
+      picture: res.picture,
+      token: res.acessToken
+    };
+
+    this.props.dispatch(AuthActions.loginFacebook(postData));
+    this.setState({ redirect: true });
   }
 
   render() {
@@ -57,7 +55,7 @@ class Navbar extends Component {
           fields="name,email,picture"
           callback={response => {
             console.log(response);
-            this.signup(response, "facebook");
+            this.signup(response);
           }}
           icon="fa-facebook"
           scope="public_profile,user_friends,user_actions.books"
@@ -74,4 +72,4 @@ class Navbar extends Component {
     );
   }
 }
-export default Navbar;
+export default connect()(Navbar);
