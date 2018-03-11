@@ -6,9 +6,9 @@
   align-items: center;
   padding: 0 calc(10% + 1rem);
   position: relative;
-  background: #5b35bc;
-  border-bottom: 1px solid #d4dadf;
-  box-shadow: 0 0 1px 0 #f0f1f4;
+  background: #380e90;
+  border-bottom: 1px solid #380e90;
+  box-shadow: 0 0 1px 0 #380e90;
   flex: 0 60px;
   width: 100%;
   font-weight: bold;
@@ -26,29 +26,14 @@
     display: inline-block;
   }
 
-  &-ul {
-    overflow: hidden;
-    list-style: none;
-    margin: 0;
-    top: 0;
-    padding: 2rem;
-    display: flex;
-    width: 100%;
-    list-style: none;
-    position: initial;
-    height: initial;
-    width: initial;
-    display: flex;
-    text-align: center;
-
-    & li:hover {
-      border-top: 2px solid #d4dadf;
-    }
+  .Navbar-logo {
+    font-size: 1rem;
+    transition: transform 0.2s;
+  }
+  .Navbar-logo:hover {
+    transform: scale(1.2);
   }
 
-  h1 {
-    font-size: 2rem;
-  }
   .picture-icon {
     background: #fff;
     border-radius: 60px;
@@ -59,16 +44,19 @@
   }
   .my-facebook-button-class {
     background: transparent;
-    height: 38px;
-    line-height: 40px;
+    height: 39px;
     display: inline-block;
     float: none;
     text-align: center;
-    width: 200px;
-    padding: 0px !important;
-    font-size: 14px;
+    width: 140px;
+    padding: 1px 4px !important;
+    font-size: 12px;
     color: #fff;
-    border-radius: 20px;
+    border-radius: 3px;
     outline: 0;
+  }
+  .my-facebook-button-class:hover {
+    opacity: 1;
+    background-color: #340d88;
   }
 }

@@ -31,6 +31,8 @@ class Navbar extends Component {
   }
 
   render() {
+    const { hasToken } = this.props;
+
     if (this.state.redirect || localStorage.getItem("acess-token")) {
       return <Redirect to="/dashboard" />;
     }
@@ -40,34 +42,31 @@ class Navbar extends Component {
         <Link className="Navbar-link" to="/">
           <h1 className="Navbar-logo">Kiga</h1>
         </Link>
-        <ul className="Navbar-ul">
-          <Link className="Navbar-link" to="/">
-            <li>Home</li>
-          </Link>
-          <Link className="Navbar-link" to="#">
-            <li>About</li>
-          </Link>
-        </ul>
 
-        <FacebookLogin
-          appId="220764528493510"
-          autoLoad={false}
-          fields="name,email,picture"
-          callback={response => {
-            console.log(response);
-            this.signup(response);
-          }}
-          icon="fa-facebook"
-          scope="public_profile,user_friends,user_actions.books"
-          cssClass="my-facebook-button-class"
-          size="small"
-        />
-
-        <img
-          src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
-          className="picture-icon"
-          alt="UserPicture"
-        />
+        {hasToken ? (
+          <img
+            src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
+            className="picture-icon"
+            alt="UserPicture"
+          />
+        ) : (
+          <FacebookLogin
+            appId="220764528493510"
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={response => {
+              console.log(response);
+              this.signup(response);
+            }}
+            render={renderProps => (
+              <button onClick={renderProps.onClick}>Login</button>
+            )}
+            icon="fa-facebook"
+            scope="public_profile,user_friends,user_actions.books"
+            cssClass="my-facebook-button-class"
+            size="small"
+          />
+        )}
       </nav>
     );
   }
