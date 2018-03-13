@@ -20,20 +20,23 @@ class Navbar extends Component {
     let postData;
 
     postData = {
-      firstName: res.name,
-      email: res.email,
-      picture: res.picture,
-      token: res.acessToken
+      firstName: res.first_name,
+      lastName: res.last_name,
+      facebookId: res.id
     };
 
-    this.props.dispatch(AuthActions.loginFacebook(postData));
-    this.setState({ redirect: true });
+    console.log(postData)   
+    
+    if (postData) {
+      this.props.dispatch(AuthActions.loginFacebook(postData));
+      this.setState({ redirect: true });
+    }
   }
 
   render() {
     const { hasToken } = this.props;
-
-    if (this.state.redirect || localStorage.getItem("acess-token")) {
+    console.log(this.state.redirect);
+    if (this.state.redirect) {
       return <Redirect to="/dashboard" />;
     }
 
@@ -53,14 +56,8 @@ class Navbar extends Component {
           <FacebookLogin
             appId="220764528493510"
             autoLoad={false}
-            fields="name,email,picture"
-            callback={response => {
-              console.log(response);
-              this.signup(response);
-            }}
-            render={renderProps => (
-              <button onClick={renderProps.onClick}>Login</button>
-            )}
+            fields="name,picture, first_name, last_name"
+            callback={this.signup}
             icon="fa-facebook"
             scope="public_profile,user_friends,user_actions.books"
             cssClass="my-facebook-button-class"
