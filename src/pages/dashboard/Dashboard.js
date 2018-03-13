@@ -11,14 +11,7 @@ class Dashboard extends Component {
     };
   }
 
-  componentDidMount() {
-    let data = JSON.parse(localStorage.getItem("acessToken"));
-    console.log(data);
-    this.setState({
-      name: this.state.name,
-      picture: this.state.pictureZA
-    });
-  }
+
 
   render() {
     if (!localStorage.getItem("acessToken") || this.state.redirect) {
@@ -26,8 +19,7 @@ class Dashboard extends Component {
     }
     return (
       <div>
-        Hello User {this.state.name}
-        <img src={this.state.picture} alt={this.state.name} />
+        Ola
       </div>
     );
   }
