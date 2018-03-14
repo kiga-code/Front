@@ -6,28 +6,54 @@ body {
   background-color: #380e90;
   width: 100%;
   background-size: cover;
+  display: flex;
 
   &-description {
     color: #fff;
     padding: 10px;
-    margin: 10px;
+    font-size: 20px;
+    margin-top: 20px; 
+    text-align: justify;
+
+    &-button {
+      border-radius: 6px;
+      height: 40px;
+      margin-top: 20px;
+      width: 150px;
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      outline: 0;
+      font-size: 16px;
+      margin: 10px;
+    }
+
+    &-button:hover {
+      background: #340d88;
+    }
   }
 
   &-title {
     color: #fff;
-    padding: 10px 10px;
-    margin: 10px;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+    width: 100%;
+    min-width: 100px;
   }
 
   &-image {
-    height: 800px;
-    min-height: 500px;
+    height: 550px;
+    min-height: 400px;
   }
 
   &-left {
-    float: left;
-    padding-left: 300px;
-    top: 50%;
+    padding: 10px 40px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   &-right {
     float: right;

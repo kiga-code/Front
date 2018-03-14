@@ -8,15 +8,14 @@ const initialState = {
   error: null
 };
 
-
 export default function authReducers(state = initialState, action) {
   switch (action.type) {
     case FCB_AUTH:
       return {
         ...state,
         done: true,
-        token: action.payload.token,
-        data: action.paylaod
+        data: action.paylaod,
+        token: action.paylaod.token
       };
     case FCB_AUTH_FAILED:
       return {
