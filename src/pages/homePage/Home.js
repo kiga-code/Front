@@ -13,7 +13,8 @@ class Home extends Component {
             Uma plataforma de comunicação para o compartilhamento de infomarção
             customizadas sobre o tratamento de doenças. O principal objetivo é
             permitir o acompanhamento da evolução do paciente e auxiliar o
-            próprio cliente no auto-gerenciamento.
+            próprio cliente no auto-gerenciamento. Teremos um suporte ao paciente em forma
+            de chatbot para ele acompanhar e analisar um pós-diagnóstico.
           </p>
           <Button styleClass="home-container-description-button">
             Saiba Mais

@@ -19,14 +19,18 @@ class Navbar extends Component {
   signup(res) {
     let postData;
 
+    console.log(res.first_name);
+    console.log(res.last_name);
+    console.log(res.id);
+
     postData = {
       firstName: res.first_name,
       lastName: res.last_name,
       facebookId: res.id
     };
 
-    console.log(postData)   
-    
+    console.log(postData);
+
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));
       this.setState({ redirect: true });
@@ -47,12 +51,6 @@ class Navbar extends Component {
         </Link>
 
         {hasToken ? (
-          <img
-            src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
-            className="picture-icon"
-            alt="UserPicture"
-          />
-        ) : (
           <FacebookLogin
             appId="220764528493510"
             autoLoad={false}
@@ -62,10 +60,23 @@ class Navbar extends Component {
             scope="public_profile,user_friends,user_actions.books"
             cssClass="my-facebook-button-class"
             size="small"
+            textButton="Login"
+          />
+        ) : (
+          <img
+            src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
+            className="picture-icon"
+            alt="UserPicture"
           />
         )}
       </nav>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    hasToken: state.auth.token ? true : false
+  };
 }
 export default connect()(Navbar);
