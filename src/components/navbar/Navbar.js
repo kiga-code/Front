@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import * as AuthActions from "../../services/redux/actions/AuthActions";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import Vini from '../../images/vinicios.jpg'
 
 class Navbar extends Component {
   constructor(props) {
@@ -25,6 +26,8 @@ class Navbar extends Component {
       lastName: res.last_name,
       facebookId: res.id
     };
+
+    localStorage.setItem("picture", res.picture);
 
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));
@@ -55,13 +58,14 @@ class Navbar extends Component {
             <Link to="/dashboard">
               <li>Perfil</li>
             </Link>
+            
           </ul>
         ) : (
           ""
         )}
         {hasToken ? (
           <img
-            src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
+            src={Vini}
             className="picture-icon"
             alt="UserPicture"
           />
@@ -77,10 +81,6 @@ class Navbar extends Component {
             textButton=" Login"
           />
         )}
-        {/* <ul className={"navbar-dropdown-" + this.state.clicked}>
-          <li>Perfil</li>
-          <li>Sair</li>
-        </ul> */}
       </nav>
     );
   }
@@ -89,7 +89,10 @@ class Navbar extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    hasToken: state.auth.token ? true : false
+    hasToken: state.auth.token ? true : false,
+    picture: state.auth.picture.url,
+    firstName: state.auth.firstName,
+    lastName: state.auth.lastName
   };
 }
 export default connect(mapStateToProps)(Navbar);

@@ -5,6 +5,9 @@ const initialState = {
     ? localStorage.getItem("accessToken")
     : null,
   done: false,
+  firstName: localStorage.getItem("firstName"),
+  lastName: localStorage.getItem("lastName"),
+  picture: localStorage.getItem("picture"),
   error: null
 };
 
@@ -15,7 +18,10 @@ export default function authReducers(state = initialState, action) {
         ...state,
         done: true,
         data: action.payload,
-        token: action.payload.token
+        token: action.payload.token,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        picture: action.payload.picture
       };
     case FCB_AUTH_FAILED:
       return {

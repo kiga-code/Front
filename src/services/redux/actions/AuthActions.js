@@ -14,6 +14,9 @@ export const loginFacebook = data => dispatch => {
     .post(`${Endpoint.api}/Usuario`, data, config)
     .then(res => {
       localStorage.setItem("accessToken", res.data.token);
+      localStorage.setItem("firstName", res.data.firstName);
+      localStorage.setItem("lastName", res.data.lastName);
+      localStorage.setItem("picture", res.picture.url)
       dispatch({
         type: FCB_AUTH,
         payload: res.data
