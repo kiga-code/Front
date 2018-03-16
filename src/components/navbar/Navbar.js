@@ -38,10 +38,13 @@ class Navbar extends Component {
   }
 
   render() {
-    const { hasToken } = this.props;
+    const { hasToken, history } = this.props;
     console.log(this.state.redirect);
+    console.log(this.props);
     if (this.state.redirect) {
-      return <Redirect to="/dashboard" />;
+      <Redirect path="/dashboard" />;
+    } else {
+      <Redirect to="/" />;
     }
 
     return (
@@ -49,8 +52,20 @@ class Navbar extends Component {
         <Link className="Navbar-link" to="/">
           <h1 className="Navbar-logo">Kiga</h1>
         </Link>
-
         {hasToken ? (
+          <ul>
+            <li>Chatboat</li>
+          </ul>
+        ) : (
+          ""
+        )}
+        {hasToken ? (
+          <img
+            src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
+            className="picture-icon"
+            alt="UserPicture"
+          />
+        ) : (
           <FacebookLogin
             appId="220764528493510"
             autoLoad={false}
@@ -58,15 +73,8 @@ class Navbar extends Component {
             callback={this.signup}
             icon="fa-facebook"
             scope="public_profile,user_friends,user_actions.books"
-            cssClass="my-facebook-button-class"
             size="small"
-            textButton="Login"
-          />
-        ) : (
-          <img
-            src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
-            className="picture-icon"
-            alt="UserPicture"
+            textButton=" Login"
           />
         )}
       </nav>
@@ -75,8 +83,9 @@ class Navbar extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     hasToken: state.auth.token ? true : false
   };
 }
-export default connect()(Navbar);
+export default connect(mapStateToProps)(Navbar);

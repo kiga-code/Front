@@ -26,6 +26,32 @@
     display: inline-block;
   }
 
+  ul {
+    font-size: 1rem;
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+    top: 0;
+    padding: 2rem;
+    display: flex;
+    width: 100%;
+    list-style: none;
+    position: initial;
+    height: initial;
+    width: initial;
+    display: flex;
+    text-align: center;
+    width: 100%;
+
+    & li:hover {
+      opacity: 0.75;
+      transform: scale(1.2);
+    }
+  }
+
+  li {
+    color: #fff;
+  }
   .Navbar-logo {
     font-size: 1rem;
     transition: transform 0.2s;
@@ -41,22 +67,5 @@
     border: 1px solid #fff;
     width: 50px;
     object-fit: cover;
-  }
-  .my-facebook-button-class {
-    background: transparent;
-    height: 39px;
-    display: inline-block;
-    float: none;
-    text-align: center;
-    width: 140px;
-    padding: 1px 4px !important;
-    font-size: 12px;
-    color: #fff;
-    border-radius: 3px;
-    outline: 0;
-  }
-  .my-facebook-button-class:hover {
-    opacity: 1;
-    background-color: #340d88;
   }
 }
