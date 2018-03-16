@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Mina');
+@import url('https://fonts.googleapis.com/css?family=Muli:200,400');
 
 * {
-  font-family: "Mina";
+  font-family: "Muli", "sans-serif";
   box-sizing: border-box;
   margin: 0;
 }

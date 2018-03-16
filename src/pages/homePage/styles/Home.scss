@@ -1,9 +1,45 @@
 body {
   margin: 0;
-  background-color: #380e90;
+  background: linear-gradient(270deg, #370460, #340069, #310e57, #a990c1);
+  background-size: 800% 800%;
+  -webkit-animation: AnimationName 45s ease infinite;
+  -moz-animation: AnimationName 45s ease infinite;
+  animation: AnimationName 45s ease infinite;
+  @-webkit-keyframes AnimationName {
+    0% {
+      background-position: 0% 94%;
+    }
+    50% {
+      background-position: 100% 7%;
+    }
+    100% {
+      background-position: 0% 94%;
+    }
+  }
+  @-moz-keyframes AnimationName {
+    0% {
+      background-position: 0% 94%;
+    }
+    50% {
+      background-position: 100% 7%;
+    }
+    100% {
+      background-position: 0% 94%;
+    }
+  }
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 94%;
+    }
+    50% {
+      background-position: 100% 7%;
+    }
+    100% {
+      background-position: 0% 94%;
+    }
+  }
 }
 .home-container {
-  background-color: #380e90;
   width: 100%;
   background-size: cover;
   display: flex;
@@ -12,7 +48,7 @@ body {
     color: #fff;
     padding: 10px;
     font-size: 20px;
-    margin-top: 20px; 
+    margin-top: 20px;
     text-align: justify;
 
     &-button {
@@ -29,7 +65,7 @@ body {
     }
 
     &-button:hover {
-      background: #340d88;
+      opacity: 0.7;
     }
   }
 
