@@ -46,7 +46,7 @@ class Dashboard extends Component {
                     className="dashboard-container-icon-heart"
                     alt=""
                   />{" "}
-                  54 bpm{" "}
+                  0 bpm{" "}
                 </span>
               </div>
             </div>
