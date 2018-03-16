@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
 
   render() {
-    if (!localStorage.getItem("acessToken") || this.state.redirect) {
+    if (!localStorage.getItem("accessToken") || this.state.redirect) {
       return <Redirect to="/" />;
     }
     return (

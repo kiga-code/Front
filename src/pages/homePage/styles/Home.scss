@@ -62,6 +62,7 @@ body {
       outline: 0;
       font-size: 16px;
       margin: 10px;
+      margin-left: 30px;
     }
 
     &-button:hover {
@@ -92,8 +93,7 @@ body {
     align-items: flex-start;
   }
   &-right {
-    float: right;
-    padding-right: 300px;
+    padding-right: 150px;
     top: 50%;
   }
 }

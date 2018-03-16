@@ -2,7 +2,7 @@ import { FCB_AUTH, FCB_AUTH_FAILED, LOGOUT } from "../actions/actionTypes";
 
 const initialState = {
   token: localStorage.getItem("accessToken")
-    ? localStorage.getItem("acessToken")
+    ? localStorage.getItem("accessToken")
     : null,
   done: false,
   error: null
@@ -14,8 +14,8 @@ export default function authReducers(state = initialState, action) {
       return {
         ...state,
         done: true,
-        data: action.paylaod,
-        token: action.paylaod.token
+        data: action.payload,
+        token: action.payload.token
       };
     case FCB_AUTH_FAILED:
       return {
