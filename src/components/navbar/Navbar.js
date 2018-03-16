@@ -20,30 +20,28 @@ class Navbar extends Component {
   signup(res) {
     let postData;
 
-    console.log(res.first_name);
-    console.log(res.last_name);
-    console.log(res.id);
-
     postData = {
       firstName: res.first_name,
       lastName: res.last_name,
       facebookId: res.id
     };
 
-    console.log(postData);
-
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));
       this.setState({ redirect: true });
     }
   }
-  handleClick(e) {
-    this.setState({ click: !this.state.clicked });
+
+  handleClick() {
+    this.setState({ clicked: !this.state.clicked });
   }
+
   render() {
     const { hasToken } = this.props;
     if (this.state.redirect) {
       return <Redirect to={"/dashboard"} />;
+    } else {
+      <Redirect path={"/"} />;
     }
 
     return (
@@ -54,18 +52,19 @@ class Navbar extends Component {
         {hasToken ? (
           <ul>
             <li>Chatboat</li>
+            <Link to="/dashboard">
+              <li>Perfil</li>
+            </Link>
           </ul>
         ) : (
           ""
         )}
         {hasToken ? (
-          <Link onClick={this.handleClick}>
-            <img
-              src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
-              className="picture-icon"
-              alt="UserPicture"
-            />
-          </Link>
+          <img
+            src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
+            className="picture-icon"
+            alt="UserPicture"
+          />
         ) : (
           <FacebookLogin
             appId="220764528493510"
@@ -78,10 +77,10 @@ class Navbar extends Component {
             textButton=" Login"
           />
         )}
-        <ul className={"navbar-dropdown-" + "" + this.state.clicked}>
+        {/* <ul className={"navbar-dropdown-" + this.state.clicked}>
           <li>Perfil</li>
           <li>Sair</li>
-        </ul>
+        </ul> */}
       </nav>
     );
   }
