@@ -11,7 +11,8 @@ class Navbar extends Component {
     super(props);
     this.state = {
       redirect: false,
-      error: false
+      error: false,
+      clicked: false
     };
     this.signup = this.signup.bind(this);
   }
@@ -36,15 +37,13 @@ class Navbar extends Component {
       this.setState({ redirect: true });
     }
   }
-
+  handleClick(e) {
+    this.setState({ click: !this.state.clicked });
+  }
   render() {
-    const { hasToken, history } = this.props;
-    console.log(this.state.redirect);
-    console.log(this.props);
+    const { hasToken } = this.props;
     if (this.state.redirect) {
-      <Redirect path="/dashboard" />;
-    } else {
-      <Redirect to="/" />;
+      return <Redirect to={"/dashboard"} />;
     }
 
     return (
@@ -60,11 +59,13 @@ class Navbar extends Component {
           ""
         )}
         {hasToken ? (
-          <img
-            src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
-            className="picture-icon"
-            alt="UserPicture"
-          />
+          <Link onClick={this.handleClick}>
+            <img
+              src="https://image.freepik.com/free-vector/obama-frontal-face_91-9878.jpg"
+              className="picture-icon"
+              alt="UserPicture"
+            />
+          </Link>
         ) : (
           <FacebookLogin
             appId="220764528493510"
@@ -77,6 +78,10 @@ class Navbar extends Component {
             textButton=" Login"
           />
         )}
+        <ul className={"navbar-dropdown-" + "" + this.state.clicked}>
+          <li>Perfil</li>
+          <li>Sair</li>
+        </ul>
       </nav>
     );
   }
