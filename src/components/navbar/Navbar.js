@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import * as AuthActions from "../../services/redux/actions/AuthActions";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Vini from '../../images/vinicios.jpg'
+import Vini from "../../images/vinicios.jpg";
 
 class Navbar extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Navbar extends Component {
   render() {
     const { hasToken } = this.props;
     if (this.state.redirect) {
-      return <Redirect to={"/dashboard"} />;
+      return <Redirect to={"/"} />;
     } else {
       <Redirect path={"/"} />;
     }
@@ -54,21 +54,16 @@ class Navbar extends Component {
         </Link>
         {hasToken ? (
           <ul>
-            <li>Chatboat</li>
+            <li>Chatbot</li>
             <Link to="/dashboard">
               <li>Perfil</li>
             </Link>
-            
           </ul>
         ) : (
           ""
         )}
         {hasToken ? (
-          <img
-            src={Vini}
-            className="picture-icon"
-            alt="UserPicture"
-          />
+          <img src={Vini} className="picture-icon" alt="UserPicture" />
         ) : (
           <FacebookLogin
             appId="220764528493510"
@@ -90,7 +85,6 @@ function mapStateToProps(state) {
   console.log(state);
   return {
     hasToken: state.auth.token ? true : false,
-    picture: state.auth.picture.url,
     firstName: state.auth.firstName,
     lastName: state.auth.lastName
   };
