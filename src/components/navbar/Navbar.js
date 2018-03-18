@@ -6,6 +6,7 @@ import * as AuthActions from "../../services/redux/actions/AuthActions";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Vini from "../../images/vinicios.jpg";
+import Logo from "../../images/kiga.png";
 
 class Navbar extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Navbar extends Component {
     this.state = {
       redirect: false,
       error: false,
-      clicked: false
+      open: false
     };
     this.signup = this.signup.bind(this);
   }
@@ -27,8 +28,6 @@ class Navbar extends Component {
       facebookId: res.id
     };
 
-    localStorage.setItem("picture", res.picture);
-
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));
       this.setState({ redirect: true });
@@ -36,34 +35,46 @@ class Navbar extends Component {
   }
 
   handleClick() {
-    this.setState({ clicked: !this.state.clicked });
+    this.setState({ open: !this.state.open });
   }
 
   render() {
     const { hasToken } = this.props;
-    if (this.state.redirect) {
-      return <Redirect to={"/"} />;
-    } else {
-      <Redirect path={"/"} />;
+    console.log(this.props);
+    console.log(this.state.open);
+    if (this.state.redirect | localStorage.getItem("accessToken")) {
+      return <Redirect to={"/dashboard"} />;
     }
 
     return (
       <nav className="Navbar">
-        <Link className="Navbar-link" to="/">
-          <h1 className="Navbar-logo">Kiga</h1>
+        <Link className="Navbar-link-logo" to="/">
+          <img className="Navbar-logo" src={Logo} alt="Logo" />
         </Link>
         {hasToken ? (
-          <ul>
-            <li>Chatbot</li>
-            <Link to="/dashboard">
-              <li>Perfil</li>
+          <ul className="Navbar-ul">
+            <Link to="/">
+              <li className="Navbar-li">Chatbot</li>
             </Link>
           </ul>
         ) : (
           ""
         )}
+        <ul className={"Navbar-dropDown-" + this.state.open}>
+          <Link to="/dashboard">
+            <li className="Navbar-dropDown-li">Perfil</li>
+          </Link>
+          <Link to="/dashboard">
+            <li className="Navbar-dropDown-li">Sair</li>
+          </Link>
+        </ul>
         {hasToken ? (
-          <img src={Vini} className="picture-icon" alt="UserPicture" />
+          <button
+            className="Navbar-icon-button"
+            onClick={() => this.handleClick()}
+          >
+            <img src={Vini} className="picture-icon" alt="UserPicture" />
+          </button>
         ) : (
           <FacebookLogin
             appId="220764528493510"
