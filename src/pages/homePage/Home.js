@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./styles/Home.scss";
-import Iphone from "../../images/iphone.png";
+import Iphone from "../../images/iphoneI.png";
 import Button from "../../components/button";
 import { Link } from "react-router-dom";
 import Kiga from "../../documents/Kiga.pdf";
