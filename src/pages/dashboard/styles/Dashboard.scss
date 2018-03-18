@@ -28,6 +28,10 @@ body {
     justify-content: center;
   }
 
+  svg {
+    margin-right: 10px;
+  }
+
   &-circle {
     padding: 20px;
   }
@@ -50,6 +54,11 @@ body {
   &-icon {
     display: flex;
     align-items: center;
+    padding-left: 33px;
+
+    &-title {
+      padding-left: 33px;
+    }
 
     &-heart {
       margin-left: 5px;
