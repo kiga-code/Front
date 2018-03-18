@@ -14,10 +14,37 @@
   font-weight: bold;
   letter-spacing: 0.025em;
   height: 70px;
+
+  &-dropDown-true {
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    min-width: 200px;
+    width: 80px;
+    box-shadow: rgba(0, 0, 0, 0.11765) 0px 1px 6px,
+      rgba(0, 0, 0, 0.11765) 0px 1px 4px;
+    height: 80px;
+    margin-top: 159px;
+    margin-right: -50px;
+  }
+
+  &-dropDown-li {
+    text-decoration: none;
+    list-style: none;
+    padding: 3px;
+    margin: 3px;
+    color: #370460;
+  }
+
+  &-dropDown-false {
+    display: none;
+  }
+
   &-logo {
     margin: 0;
   }
-
   &-link {
     cursor: pointer;
     color: #fff;
@@ -26,7 +53,14 @@
     display: inline-block;
   }
 
-  ul {
+  &-link-logo {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 10px;
+    outline: 0;
+  }
+
+  &-ul {
     font-size: 1rem;
     overflow: hidden;
     list-style: none;
@@ -42,48 +76,53 @@
     display: flex;
     text-align: center;
     width: 100%;
-
-    & li:hover {
-      opacity: 0.75;
-      transform: scale(1.2);
-    }
   }
-
-  .navbar-dropDown-true {
-    z-index: 20;
-    overflow: scroll;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    min-width: 200px;
-    box-shadow: rgba(0, 0, 0, 0.11765) 0px 1px 6px,
-      rgba(0, 0, 0, 0.11765) 0px 1px 4px;
-    height: 200px;
-    margin-top: 10px;
-  }
-  a {
-    text-decoration: none;
-  }
-  li {
-    width: 80px;
-    color: #fff;
-  }
-  .Navbar-logo {
-    font-size: 1rem;
-    transition: transform 0.2s;
-  }
-  .Navbar-logo:hover {
+  &-li:hover {
+    opacity: 0.75;
     transform: scale(1.2);
   }
 
-  .picture-icon {
-    background: #fff;
-    border-radius: 60px;
-    height: 50px;
-    border: 1px solid #fff;
-    width: 50px;
-    object-fit: cover;
+  a {
+    text-decoration: none;
   }
+  &-li {
+    width: 80px;
+    color: #fff;
+  }
+  &-logo {
+    transition: transform 0.2s;
+    height: 130px;
+    width: 130px;
+    outline: 0;
+  }
+  &-logo:hover {
+    transform: scale(1.2);
+  }
+
+  &-dropDown-arrow {
+    position: absolute;
+    top: -18px;
+    left: 20px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid rgb(233, 212, 222);
+    width: 0;
+    height: 0;
+    -webkit-filter: drop-shadow(0 -2px 2px #aaa);
+  }
+
+  &-icon-button {
+    background: transparent;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+  }
+}
+.picture-icon {
+  background: #fff;
+  border-radius: 60px;
+  height: 50px;
+  border: 1px solid #fff;
+  width: 50px;
+  object-fit: cover;
 }

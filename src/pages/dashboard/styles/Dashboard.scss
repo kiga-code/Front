@@ -3,19 +3,21 @@ body {
 }
 
 .dashboard-container {
-  background-color: #704b92;
+  background: linear-gradient(rgb(188, 171, 205), rgb(175, 130, 218));
   width: 100%;
   height: 100vh;
 
   &-middle {
     height: 300px;
-    width: 900px;
+    width: 800px;
     background: #fff;
     margin-left: auto;
     margin-right: auto;
-    min-width: 800px;
+    min-width: 700px;
     margin-top: 30px;
     display: flex;
+    box-shadow: rgba(0, 0, 0, 0.11765) 0px 1px 6px,
+      rgba(0, 0, 0, 0.11765) 0px 1px 4px;
   }
 
   &-title {
@@ -63,6 +65,5 @@ body {
     z-index: 60;
     box-shadow: rgba(0, 0, 0, 0.11765) 0px 1px 6px,
       rgba(0, 0, 0, 0.11765) 0px 1px 4px;
-    margin-top: -30px;
   }
 }
