@@ -27,7 +27,7 @@
       rgba(0, 0, 0, 0.11765) 0px 1px 4px;
     height: 80px;
     margin-top: 159px;
-    margin-right: -50px;
+    margin-right: -80px;
   }
 
   &-dropDown-li {
@@ -101,14 +101,14 @@
 
   &-dropDown-arrow {
     position: absolute;
-    top: -18px;
-    left: 20px;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 20px solid rgb(233, 212, 222);
+    top: 60px;
+    right: 14%;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #fff;
     width: 0;
     height: 0;
-    -webkit-filter: drop-shadow(0 -2px 2px #aaa);
+    -webkit-filter: drop-shadow(0 -2px -2px #aaa);
   }
 
   &-icon-button {
