@@ -1,0 +1,38 @@
+.Chatbot-Container {
+  overflow: auto;
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 70%;
+  height: 540px;
+  background-color: #a990c1;
+  border-radius: 20px;
+  padding: 20px;
+
+  &-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-down {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 54%;
+  }
+
+  &-button {
+    margin-left: 5px;
+    border: 0;
+    background-color: #370460;
+    color: #fff;
+    outline: 0;
+    border-radius: 3px;
+  }
+}
+.Chatbot-fild {
+  resize: none;
+  outline: 0;
+  border-radius: 15px;
+  width: 92%;
+}

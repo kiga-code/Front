@@ -28,6 +28,8 @@ class Navbar extends Component {
       facebookId: res.id
     };
 
+    console.log("ss", res.status);
+
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));
       this.setState({ redirect: true });
@@ -53,7 +55,7 @@ class Navbar extends Component {
         </Link>
         {hasToken ? (
           <ul className="Navbar-ul">
-            <Link to="/">
+            <Link to="/chatbot">
               <li className="Navbar-li">Chatbot</li>
             </Link>
           </ul>
@@ -61,6 +63,7 @@ class Navbar extends Component {
           ""
         )}
         <ul className={"Navbar-dropDown-" + this.state.open}>
+          <div className="Navbar-dropDown-arrow" />
           <Link to="/dashboard">
             <li className="Navbar-dropDown-li">Perfil</li>
           </Link>
@@ -79,7 +82,7 @@ class Navbar extends Component {
           <FacebookLogin
             appId="220764528493510"
             autoLoad={false}
-            fields="name,picture, first_name, last_name"
+            fields="status,name,picture, first_name, last_name"
             callback={this.signup}
             icon="fa-facebook"
             scope="public_profile,user_friends,user_actions.books"

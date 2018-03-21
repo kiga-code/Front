@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import HomeContainer from "./containers/HomePageContainer";
 import Navbar from "./components/navbar";
 import Dashboard from "./pages/dashboard";
+import ChatbotContainer from "./containers/ChatbotContainer";
 import NotFound from "./components/notFound";
 import "./App.css";
 import store from "./services/store";
@@ -17,7 +18,8 @@ class App extends Component {
             <Navbar />
             <Switch>
               <Route path="/" exact component={HomeContainer} />
-              <Route path="/dashboard" exact  component={Dashboard} />
+              <Route path="/dashboard" exact component={Dashboard} />
+              <Route path="/chatbot" component={ChatbotContainer} />
               <Route path="*" component={NotFound} />
             </Switch>
           </div>
