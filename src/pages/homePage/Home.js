@@ -3,10 +3,16 @@ import "./styles/Home.scss";
 import Iphone from "../../images/iphoneI.png";
 import Button from "../../components/button";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Kiga from "../../documents/Kiga.pdf";
+import { Redirect } from "react-router-dom";
 
 class Home extends Component {
   render() {
+    const { hasToken } = this.props;
+    if (hasToken) {
+      return <Redirect to={"/dashboard"} />;
+    }
     return (
       <div className="home-container">
         <div className="home-container-left">
@@ -31,5 +37,10 @@ class Home extends Component {
       </div>
     );
   }
+}
+function mapStateToProps(state) {
+  return {
+    hasToken: state.auth ? true : false
+  };
 }
 export default Home;

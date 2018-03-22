@@ -6,41 +6,36 @@ import Calendar from "../../components/icons/calendar";
 import Mail from "../../components/icons/mail";
 import Placeholder from "../../components/icons/placeholder";
 import Heart from "../../components/icons/heart";
+import axios from "axios";
+import { connect } from "react-redux";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.FB = props.fb;
     this.state = {
       redirect: false
     };
-    console.log(props.fb);
-  }
-
-  componentDidMount() {
-    // this.FB.api("/100024880491575", "GET", {}, function(response) {
-    //   // Insert your code here
-    //   console.log(response)
-    // });
   }
 
   render() {
-    // if (!localStorage.getItem("accessToken") || this.state.redirect) {
-    //   return <Redirect to="/" />;
-    // }
-
+    if (!localStorage.getItem("accessToken")) {
+      return <Redirect to="/" />;
+    }
+    const { firstName, lastName, hasToken } = this.props;
+    console.log(this.props);
     return (
       <div className="dashboard-container">
-        <h1 className="dashboard-container-title">
-          Olá Vinicios ! {this.props.lastName}
-        </h1>
+        <h1 className="dashboard-container-title">Olá {firstName} !</h1>
         <div className="dashboard-container-align">
           <div className="dashboard-container-middle">
             <span className="dashboard-container-circle">
               <img src={Vini} className="dashboard-container-picture" />
             </span>
             <div className="dashboard-container-right">
-              <h1 className="dashboard-container-name">Vinicios Oliveira</h1>
+              <h1 className="dashboard-container-name">
+                {firstName}&nbsp;
+                {lastName}
+              </h1>
               <span className="dashboard-container-info">
                 {" "}
                 <p>
@@ -79,4 +74,4 @@ function mapStateToProps(state) {
     lastName: state.auth.lastName
   };
 }
-export default Dashboard;
+export default connect(mapStateToProps)(Dashboard);

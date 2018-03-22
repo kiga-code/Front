@@ -28,7 +28,7 @@ class Navbar extends Component {
       facebookId: res.id
     };
 
-    console.log("ss", res.status);
+    
 
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));
@@ -42,12 +42,7 @@ class Navbar extends Component {
 
   render() {
     const { hasToken } = this.props;
-    console.log(this.props);
-    console.log(this.state.open);
-    if (this.state.redirect | localStorage.getItem("accessToken")) {
-      return <Redirect to={"/dashboard"} />;
-    }
-
+    console.log("ddddddddd", hasToken);
     return (
       <nav className="Navbar">
         <Link className="Navbar-link-logo" to="/">
@@ -82,7 +77,7 @@ class Navbar extends Component {
           <FacebookLogin
             appId="220764528493510"
             autoLoad={false}
-            fields="status,name,picture, first_name, last_name"
+            fields="name, picture, first_name, last_name"
             callback={this.signup}
             icon="fa-facebook"
             scope="public_profile,user_friends,user_actions.books"
