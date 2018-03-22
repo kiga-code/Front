@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import "./styles/Dashboard.scss";
-import Vini from "../../images/vinicios.jpg";
 import Calendar from "../../components/icons/calendar";
 import Mail from "../../components/icons/mail";
 import Placeholder from "../../components/icons/placeholder";
 import Heart from "../../components/icons/heart";
-import axios from "axios";
 import { connect } from "react-redux";
+import * as UserActions from "../../services/redux/actions/UserActions";
+import Vini from "../../images/vinicios.jpg";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false
+      redirect: false,
+      data: {}
     };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(UserActions.userProfile());
   }
 
   render() {
