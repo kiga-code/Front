@@ -17,7 +17,7 @@ export const loginFacebook = data => dispatch => {
       localStorage.setItem("accessToken", res.data.token);
       localStorage.setItem("firstName", res.data.firstName);
       localStorage.setItem("lastName", res.data.lastName);
-      localStorage.setItem("picture", res.data.picture.data.url);
+      localStorage.setItem("facebookId", res.data.facebookId);
       dispatch({
         type: FCB_AUTH,
         payload: res.data

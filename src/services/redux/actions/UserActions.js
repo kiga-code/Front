@@ -8,10 +8,11 @@ const config = {
     Authorization: "Bearer " + localStorage.getItem("accessToken")
   }
 };
+console.log(config);
 
 export const userProfile = () => dispatch => {
   axios
-    .get(`https://graph.facebook.com/me?fields=name, email, picture`)
+    .get(`https://graph.facebook.com/me?fields=name`, config)
     .then(res => {
       res.json();
     })

@@ -6,8 +6,7 @@ import Mail from "../../components/icons/mail";
 import Placeholder from "../../components/icons/placeholder";
 import Heart from "../../components/icons/heart";
 import { connect } from "react-redux";
-import * as UserActions from "../../services/redux/actions/UserActions";
-import Vini from "../../images/vinicios.jpg";
+import * as UserActions from "../../services/redux/actions/UserActions"
 
 class Dashboard extends Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(UserActions.userProfile());
+   
   }
 
   render() {
@@ -34,7 +33,10 @@ class Dashboard extends Component {
         <div className="dashboard-container-align">
           <div className="dashboard-container-middle">
             <span className="dashboard-container-circle">
-              <img src={Vini} className="dashboard-container-picture" />
+              <img
+                src="https://graph.facebook.com/1619613838114740/picture"
+                className="dashboard-container-picture"
+              />
             </span>
             <div className="dashboard-container-right">
               <h1 className="dashboard-container-name">
@@ -45,7 +47,7 @@ class Dashboard extends Component {
                 {" "}
                 <p>
                   <Calendar />
-                  <b>Data de nascimento:</b> 25/08/1999 - 19 anos
+                  <b>Data de nascimento:</b>
                 </p>
                 <p>
                   {" "}
@@ -53,7 +55,7 @@ class Dashboard extends Component {
                 </p>
                 <p>
                   {" "}
-                  <Placeholder />São Paulo - SP
+                  <Placeholder />
                 </p>
               </span>
               <div>
@@ -74,9 +76,11 @@ class Dashboard extends Component {
   }
 }
 function mapStateToProps(state) {
+  console.log(state);
   return {
     firstName: state.auth.firstName,
-    lastName: state.auth.lastName
+    lastName: state.auth.lastName,
+    facebookId: state.auth.facebookId
   };
 }
 export default connect(mapStateToProps)(Dashboard);

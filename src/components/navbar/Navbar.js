@@ -27,8 +27,9 @@ class Navbar extends Component {
       lastName: res.last_name,
       facebookId: res.id
     };
+    localStorage.setItem('user',JSON.stringify(res));
 
-    
+    console.log(res);
 
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));
@@ -42,7 +43,6 @@ class Navbar extends Component {
 
   render() {
     const { hasToken } = this.props;
-    console.log("ddddddddd", hasToken);
     return (
       <nav className="Navbar">
         <Link className="Navbar-link-logo" to="/">
@@ -77,7 +77,7 @@ class Navbar extends Component {
           <FacebookLogin
             appId="220764528493510"
             autoLoad={false}
-            fields="name, picture, first_name, last_name"
+            fields="name, picture, first_name, last_name,email,birthday,location"
             callback={this.signup}
             icon="fa-facebook"
             scope="public_profile,user_friends,user_actions.books"
