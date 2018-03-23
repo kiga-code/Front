@@ -6,8 +6,8 @@ import "./styles/ChatbotPage.scss";
 import { connect } from "react-redux";
 
 class ChatbotPage extends Component {
-  // const{value} =this.props
   render() {
+
     return (
       <div className="Chatbot-Container">
         <div className="Chatbot-Container-right">
@@ -41,10 +41,6 @@ class ChatbotPage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    value: state.chat.data.value
-  };
-}
 
-export default ChatbotPage;
+
+export default(ChatbotPage);

@@ -75,7 +75,7 @@ class Navbar extends Component {
             onClick={() => this.handleClick()}
           >
             <img
-              src={picture ? picture : null}
+              src=""
               className="picture-icon"
               alt="UserPicture"
             />
@@ -101,8 +101,7 @@ function mapStateToProps(state) {
   return {
     hasToken: state.auth.token ? true : false,
     firstName: state.auth.firstName,
-    lastName: state.auth.lastName,
-    picture: state.auth.user.picture.data.url
+    lastName: state.auth.lastName
   };
 }
 export default connect(mapStateToProps)(Navbar);
