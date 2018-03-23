@@ -3,13 +3,15 @@ import UserCard from "./components/UserCard";
 import Button from "../../components/button";
 import ChatCard from "./components/ChatCard";
 import "./styles/ChatbotPage.scss";
+import { connect } from "react-redux";
 
 class ChatbotPage extends Component {
+  // const{value} =this.props
   render() {
     return (
       <div className="Chatbot-Container">
         <div className="Chatbot-Container-right">
-          <UserCard>Teste</UserCard>
+          <UserCard />
         </div>
         <div className="Chatbot-Container-left">
           <ChatCard />
@@ -18,12 +20,31 @@ class ChatbotPage extends Component {
           <textarea
             placeholder="Escreva aqui..."
             className="Chatbot-fild"
+            required
+            ref={chatText => {
+              this.chatArea = chatText;
+            }}
             rows="5"
           />
-          <Button styleClass="Chatbot-Container-button">Enviar</Button>
+          <Button
+            styleClass="Chatbot-Container-button"
+            onClick={e => {
+              e.preventDefault();
+              this.props.onSendChat(this.chatArea.value);
+            }}
+          >
+            Enviar
+          </Button>
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    value: state.chat.data.value
+  };
+}
+
 export default ChatbotPage;

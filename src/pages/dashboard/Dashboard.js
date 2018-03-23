@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import moment from "moment";
 import "./styles/Dashboard.scss";
 import Calendar from "../../components/icons/calendar";
 import Mail from "../../components/icons/mail";
 import Placeholder from "../../components/icons/placeholder";
 import Heart from "../../components/icons/heart";
 import { connect } from "react-redux";
-import * as UserActions from "../../services/redux/actions/UserActions"
+import * as UserActions from "../../services/redux/actions/UserActions";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -17,15 +18,19 @@ class Dashboard extends Component {
     };
   }
 
-  componentDidMount() {
-   
-  }
-
   render() {
     if (!localStorage.getItem("accessToken")) {
       return <Redirect to="/" />;
     }
-    const { firstName, lastName, hasToken } = this.props;
+    const {
+      firstName,
+      hasToken,
+      birth,
+      email,
+      location,
+      name,
+      picture
+    } = this.props;
     console.log(this.props);
     return (
       <div className="dashboard-container">
@@ -33,29 +38,29 @@ class Dashboard extends Component {
         <div className="dashboard-container-align">
           <div className="dashboard-container-middle">
             <span className="dashboard-container-circle">
-              <img
-                src="https://graph.facebook.com/1619613838114740/picture"
-                className="dashboard-container-picture"
-              />
+              <img src={picture} className="dashboard-container-picture" />
             </span>
             <div className="dashboard-container-right">
-              <h1 className="dashboard-container-name">
-                {firstName}&nbsp;
-                {lastName}
-              </h1>
+              <h1 className="dashboard-container-name">{name}</h1>
               <span className="dashboard-container-info">
                 {" "}
                 <p>
                   <Calendar />
-                  <b>Data de nascimento:</b>
+                  <b>
+                    {moment(birth)
+                      .locale("pt-br")
+                      .format("LL")}
+                  </b>
                 </p>
                 <p>
                   {" "}
-                  <Mail />vinicios2508@gmail.com
+                  <Mail />
+                  {email}
                 </p>
                 <p>
                   {" "}
                   <Placeholder />
+                  {location}
                 </p>
               </span>
               <div>
@@ -76,11 +81,13 @@ class Dashboard extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log(state);
   return {
     firstName: state.auth.firstName,
-    lastName: state.auth.lastName,
-    facebookId: state.auth.facebookId
+    birth: state.auth.user.birthday,
+    email: state.auth.user.email,
+    name: state.auth.user.name,
+    location: state.auth.user.location.name,
+    picture: state.auth.user.picture.data.url
   };
 }
 export default connect(mapStateToProps)(Dashboard);

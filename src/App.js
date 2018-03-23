@@ -7,6 +7,8 @@ import ChatbotContainer from "./containers/ChatbotContainer";
 import NotFound from "./components/notFound";
 import "./App.css";
 
+require("moment/locale/pt-br.js");
+
 class App extends Component {
   render() {
     return (

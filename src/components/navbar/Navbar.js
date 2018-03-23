@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import * as AuthActions from "../../services/redux/actions/AuthActions";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Vini from "../../images/vinicios.jpg";
+import * as chatBotActions from "../../services/redux/actions/ChatbotActions";
 import Logo from "../../images/kiga.png";
 
 class Navbar extends Component {
@@ -27,7 +27,7 @@ class Navbar extends Component {
       lastName: res.last_name,
       facebookId: res.id
     };
-    localStorage.setItem('user',JSON.stringify(res));
+    localStorage.setItem("user", JSON.stringify(res));
 
     console.log(res);
 
@@ -42,7 +42,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { hasToken } = this.props;
+    const { hasToken, picture } = this.props;
     return (
       <nav className="Navbar">
         <Link className="Navbar-link-logo" to="/">
@@ -50,7 +50,10 @@ class Navbar extends Component {
         </Link>
         {hasToken ? (
           <ul className="Navbar-ul">
-            <Link to="/chatbot">
+            <Link
+              to="/chatbot"
+              onClick={this.props.dispatch(chatBotActions.chatBot({}))}
+            >
               <li className="Navbar-li">Chatbot</li>
             </Link>
           </ul>
@@ -71,7 +74,11 @@ class Navbar extends Component {
             className="Navbar-icon-button"
             onClick={() => this.handleClick()}
           >
-            <img src={Vini} className="picture-icon" alt="UserPicture" />
+            <img
+              src={picture ? picture : null}
+              className="picture-icon"
+              alt="UserPicture"
+            />
           </button>
         ) : (
           <FacebookLogin
@@ -91,11 +98,11 @@ class Navbar extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     hasToken: state.auth.token ? true : false,
     firstName: state.auth.firstName,
-    lastName: state.auth.lastName
+    lastName: state.auth.lastName,
+    picture: state.auth.user.picture.data.url
   };
 }
 export default connect(mapStateToProps)(Navbar);

@@ -1,10 +1,10 @@
 import React from "react";
 
-const ChatCard = ({ children }) => {
+const ChatCard = ({ props }) => {
   return (
     <div className="Card-Chatbot">
       <div />
-      <p className="Card-Chatbot-text">{children}</p>
+      {/* {props.value.map(chat => <p className="Card-Chatbot-text">chat.value</p>)} */}
     </div>
   );
 };
