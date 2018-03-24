@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 
 class ChatbotPage extends Component {
   render() {
-
     return (
       <div className="Chatbot-Container">
         <div className="Chatbot-Container-right">
@@ -41,6 +40,8 @@ class ChatbotPage extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {};
+}
 
-
-export default(ChatbotPage);
+export default ChatbotPage;

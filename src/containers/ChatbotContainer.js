@@ -4,18 +4,18 @@ import * as ChatbotActions from "../services/redux/actions/ChatbotActions";
 import { connect } from "react-redux";
 
 class ChatbotContainer extends Component {
-  createChat(chatText, id) {
-    this.props.dispatch(ChatbotActions.chatBot(chatText));
+  createChat(id) {
+    this.props.dispatch(ChatbotActions.chatBot({ id }));
   }
   render() {
     return <ChatbotPages onSendChat={this.createChat.bind(this)} />;
   }
 }
 
-function mapStateToProps(state) {
-  console.log(state);
-  return {
-    chat: state.chat
-  };
-}
-export default connect(mapStateToProps)(ChatbotContainer);
+// function mapStateToProps(state) {
+//   console.log(state);
+//   return {
+//     id: state.chat.data.value.id
+//   };
+// }
+export default connect()(ChatbotContainer);

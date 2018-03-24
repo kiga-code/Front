@@ -3,8 +3,12 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./styles/Button.scss";
 
-function Button({ styleClass, children }) {
-  return <button className={styleClass}>{children }</button>;
+function Button({ styleClass, children, onClick }) {
+  return (
+    <button onClick={onClick} className={styleClass}>
+      {children}
+    </button>
+  );
 }
 
 Button.defaultProps = {
