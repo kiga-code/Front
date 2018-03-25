@@ -1,11 +1,11 @@
 import React from "react";
 import "./styles/Chatbot.scss";
 
-const UserCard = ({ children }) => {
+const UserCard = props => {
   return (
     <div className="Card-Chatbot-user">
       <div className="Card-Chatbot-arrow" />
-      <p className="Card-Chatbot-user-text">{children}</p>
+      <p className="Card-Chatbot-user-text">{props.text}</p>
     </div>
   );
 };

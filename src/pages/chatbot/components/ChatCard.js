@@ -4,9 +4,9 @@ const ChatCard = props => {
   return (
     <div className="Card-Chatbot">
       <div />
-      {/* {props.value.map(chat => (
-        <p className="Card-Chatbot-text">{chat.name}</p>
-      ))} */}
+      <p className="Card-Chatbot-text">
+        {props.number}-{props.text}
+      </p>
     </div>
   );
 };

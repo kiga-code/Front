@@ -8,7 +8,9 @@ const initialState = {
   firstName: localStorage.getItem("firstName"),
   lastName: localStorage.getItem("lastName"),
   facebookId: localStorage.getItem("facebookId"),
-  user: JSON.parse(localStorage.getItem("user")),
+  user: JSON.parse(localStorage.getItem("user"))
+    ? JSON.parse(localStorage.getItem("user"))
+    : null,
   error: null
 };
 

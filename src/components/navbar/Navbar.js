@@ -29,7 +29,6 @@ class Navbar extends Component {
     };
     localStorage.setItem("user", JSON.stringify(res));
 
-    console.log(res);
 
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));

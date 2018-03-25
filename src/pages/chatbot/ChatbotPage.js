@@ -7,14 +7,28 @@ import { connect } from "react-redux";
 
 class ChatbotPage extends Component {
   render() {
+    const { chatValue } = this.props;
+    console.log(this.props);
     return (
       <div className="Chatbot-Container">
-        <div className="Chatbot-Container-right">
-          <UserCard />
-        </div>
-        <div className="Chatbot-Container-left">
-          <ChatCard />
-        </div>
+        {chatValue.map(chat => {
+          if (chatValue.length > 0) {
+            return(
+              <div className="Chatbot-Container-left">
+                <ChatCard number={chat.option} text={chat.message} />
+              </div>
+            )
+          } else {
+            return(
+              <div className="Chatbot-Container-left">
+                <ChatCard text="Comando Invalido" />
+              </div>
+            )
+          }
+        })}
+        {/* <div className="Chatbot-Container-right">
+            <UserCard />
+          </div> */}
         <div className="Chatbot-Container-down">
           <textarea
             placeholder="Escreva aqui..."
@@ -41,7 +55,10 @@ class ChatbotPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  console.log(state);
+  return {
+    chatValue: state.chat.value
+  };
 }
 
-export default ChatbotPage;
+export default connect(mapStateToProps)(ChatbotPage);

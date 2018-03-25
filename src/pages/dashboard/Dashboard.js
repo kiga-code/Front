@@ -43,7 +43,6 @@ class Dashboard extends Component {
             <div className="dashboard-container-right">
               <h1 className="dashboard-container-name">{name}</h1>
               <span className="dashboard-container-info">
-                {" "}
                 <p>
                   <Calendar />
                   <b>
