@@ -13,22 +13,22 @@ class ChatbotPage extends Component {
       <div className="Chatbot-Container">
         {chatValue.map(chat => {
           if (chatValue.length > 0) {
-            return(
+            return (
               <div className="Chatbot-Container-left">
                 <ChatCard number={chat.option} text={chat.message} />
               </div>
-            )
+            );
           } else {
-            return(
+            return (
               <div className="Chatbot-Container-left">
-                <ChatCard text="Comando Invalido" />
+                <ChatCard text={"Invalido"} />
               </div>
-            )
+            );
           }
         })}
-        {/* <div className="Chatbot-Container-right">
-            <UserCard />
-          </div> */}
+        <div className="Chatbot-Container-right">
+          <UserCard />
+        </div>
         <div className="Chatbot-Container-down">
           <textarea
             placeholder="Escreva aqui..."

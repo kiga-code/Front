@@ -7,7 +7,6 @@ import Mail from "../../components/icons/mail";
 import Placeholder from "../../components/icons/placeholder";
 import Heart from "../../components/icons/heart";
 import { connect } from "react-redux";
-import * as UserActions from "../../services/redux/actions/UserActions";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -22,23 +21,18 @@ class Dashboard extends Component {
     if (!localStorage.getItem("accessToken")) {
       return <Redirect to="/" />;
     }
-    const {
-      firstName,
-      hasToken,
-      birth,
-      email,
-      location,
-      name,
-      picture
-    } = this.props;
-    console.log(this.props);
+    const { firstName, birth, email, location, name, picture } = this.props;
     return (
       <div className="dashboard-container">
         <h1 className="dashboard-container-title">Olá {firstName} !</h1>
         <div className="dashboard-container-align">
           <div className="dashboard-container-middle">
             <span className="dashboard-container-circle">
-              <img src={picture} className="dashboard-container-picture" />
+              <img
+                src={picture}
+                className="dashboard-container-picture"
+                alt={name}
+              />
             </span>
             <div className="dashboard-container-right">
               <h1 className="dashboard-container-name">{name}</h1>

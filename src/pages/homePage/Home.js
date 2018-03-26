@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./styles/Home.scss";
 import Iphone from "../../images/iphoneI.png";
 import Button from "../../components/button";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Kiga from "../../documents/Kiga.pdf";
 import { Redirect } from "react-router-dom";
@@ -43,4 +42,4 @@ function mapStateToProps(state) {
     hasToken: state.auth ? true : false
   };
 }
-export default Home;
+export default connect(mapStateToProps)(Home);

@@ -1,5 +1,5 @@
 import * as Endpoint from "../../api/EndpointAPI";
-import { FCB_AUTH, FCB_AUTH_FAILED, LOGOUT } from "../actions/actionTypes";
+import { FCB_AUTH, LOGOUT } from "../actions/actionTypes";
 import axios from "axios";
 
 const config = {

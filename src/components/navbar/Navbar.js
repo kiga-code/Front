@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import "./styles/Navbar.scss";
 import FacebookLogin from "react-facebook-login";
 import { Link } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import * as AuthActions from "../../services/redux/actions/AuthActions";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as chatBotActions from "../../services/redux/actions/ChatbotActions";
 import Logo from "../../images/kiga.png";
@@ -19,6 +19,12 @@ class Navbar extends Component {
     this.signup = this.signup.bind(this);
   }
 
+  handleLogout = () => {
+    const { logout } = this.props.actions;
+    logout();
+    window.reload();
+  };
+
   signup(res) {
     let postData;
 
@@ -28,7 +34,6 @@ class Navbar extends Component {
       facebookId: res.id
     };
     localStorage.setItem("user", JSON.stringify(res));
-
 
     if (postData) {
       this.props.dispatch(AuthActions.loginFacebook(postData));
@@ -41,7 +46,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { hasToken, picture } = this.props;
+    const { hasToken, picture, firstName } = this.props;
     return (
       <nav className="Navbar">
         <Link className="Navbar-link-logo" to="/">
@@ -73,11 +78,7 @@ class Navbar extends Component {
             className="Navbar-icon-button"
             onClick={() => this.handleClick()}
           >
-            <img
-              src=""
-              className="picture-icon"
-              alt="UserPicture"
-            />
+            <img src={picture} className="picture-icon" alt={firstName} />
           </button>
         ) : (
           <FacebookLogin
@@ -100,7 +101,14 @@ function mapStateToProps(state) {
   return {
     hasToken: state.auth.token ? true : false,
     firstName: state.auth.firstName,
-    lastName: state.auth.lastName
+    lastName: state.auth.lastName,
+    picture: state.auth.user.picture.data.url
   };
 }
-export default connect(mapStateToProps)(Navbar);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(AuthActions, dispatch)
+  };
+}
+export default connect(mapDispatchToProps, mapStateToProps)(Navbar);

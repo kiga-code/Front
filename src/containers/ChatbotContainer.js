@@ -15,10 +15,4 @@ class ChatbotContainer extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   console.log(state);
-//   return {
-//     id: state.chat.data.value.id
-//   };
-// }
 export default connect()(ChatbotContainer);
