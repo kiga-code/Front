@@ -17,7 +17,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={HomeContainer} />
           <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/chatbot" component={ChatbotContainer} />
+          <Route path="/chatbot"  component={ChatbotContainer} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>

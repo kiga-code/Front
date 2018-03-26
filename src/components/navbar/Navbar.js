@@ -47,6 +47,7 @@ class Navbar extends Component {
 
   render() {
     const { hasToken, picture, firstName } = this.props;
+
     return (
       <nav className="Navbar">
         <Link className="Navbar-link-logo" to="/">
@@ -54,10 +55,7 @@ class Navbar extends Component {
         </Link>
         {hasToken ? (
           <ul className="Navbar-ul">
-            <Link
-              to="/chatbot"
-              onClick={this.props.dispatch(chatBotActions.chatBot({}))}
-            >
+            <Link to="/chatbot">
               <li className="Navbar-li">Chatbot</li>
             </Link>
           </ul>
@@ -69,7 +67,7 @@ class Navbar extends Component {
           <Link to="/dashboard">
             <li className="Navbar-dropDown-li">Perfil</li>
           </Link>
-          <Link to="/dashboard">
+          <Link to="/">
             <li className="Navbar-dropDown-li">Sair</li>
           </Link>
         </ul>
@@ -98,6 +96,7 @@ class Navbar extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     hasToken: state.auth.token ? true : false,
     firstName: state.auth.firstName,
@@ -107,8 +106,13 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+  console.log(dispatch);
   return {
-    actions: bindActionCreators(AuthActions, dispatch)
+    actions: bindActionCreators(AuthActions, dispatch),
+    chatBot: () => {
+      dispatch(chatBotActions.chatBot({}));
+    }
   };
 }
-export default connect(mapDispatchToProps, mapStateToProps)(Navbar);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -4,9 +4,10 @@ import * as ChatbotActions from "../services/redux/actions/ChatbotActions";
 import { connect } from "react-redux";
 
 class ChatbotContainer extends Component {
-  createChat(id, option) {
+  createChat(option) {
+    console.log(option);
     var request = {
-      id: option
+      id: option.id
     };
     this.props.dispatch(ChatbotActions.chatBotSend(request));
   }

@@ -4,8 +4,12 @@ import Button from "../../components/button";
 import ChatCard from "./components/ChatCard";
 import "./styles/ChatbotPage.scss";
 import { connect } from "react-redux";
+import * as chatBotActions from "../../services/redux/actions/ChatbotActions";
 
 class ChatbotPage extends Component {
+  componentDidMount() {
+    this.props.chatBot();
+  }
   render() {
     const { chatValue } = this.props;
     console.log(this.props);
@@ -27,7 +31,7 @@ class ChatbotPage extends Component {
           }
         })}
         <div className="Chatbot-Container-right">
-          <UserCard />
+          <UserCard text={this.chatArea ? this.chatArea.value : null} />
         </div>
         <div className="Chatbot-Container-down">
           <textarea
@@ -43,7 +47,14 @@ class ChatbotPage extends Component {
             styleClass="Chatbot-Container-button"
             onClick={e => {
               e.preventDefault();
-              this.props.onSendChat(this.chatArea.value);
+              const options = chatValue.filter(item => {
+                return item.option == this.chatArea.value;
+              });
+              if (options.length > 0) {
+                this.props.onSendChat(options[0]);
+              } else {
+                console.log("Invalida");
+              }
             }}
           >
             Enviar
@@ -55,10 +66,18 @@ class ChatbotPage extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     chatValue: state.chat.value
   };
 }
 
-export default connect(mapStateToProps)(ChatbotPage);
+function mapDispatchToProps(dispatch) {
+  console.log(dispatch);
+  return {
+    chatBot: () => {
+      dispatch(chatBotActions.chatBot({}));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatbotPage);
