@@ -24,6 +24,10 @@ class Dashboard extends Component {
     const { firstName, birth, email, location, name, picture } = this.props;
     return (
       <div className="dashboard-container">
+        <div class="load-wrapp">
+          <div class="ring-4">
+          </div>
+        </div>
         <h1 className="dashboard-container-title">Olá {firstName} !</h1>
         <div className="dashboard-container-align">
           <div className="dashboard-container-middle">
@@ -75,12 +79,12 @@ class Dashboard extends Component {
 }
 function mapStateToProps(state) {
   return {
-    firstName: state.auth.firstName,
-    birth: state.auth.user.birthday,
-    email: state.auth.user.email,
-    name: state.auth.user.name,
-    location: state.auth.user.location.name,
-    picture: state.auth.user.picture.data.url
+    firstName: state.auth && state.auth.firstName,
+    birth: state.auth && state.auth.user && state.auth.user.birthday,
+    email: state.auth && state.auth.user && state.auth.user.email,
+    name: state.auth && state.auth.user && state.auth.user.name,
+    location: state.auth && state.auth.user && state.auth.user.location.name,
+    picture: state.auth && state.auth.user && state.auth.user.picture.data.url
   };
 }
 export default connect(mapStateToProps)(Dashboard);

@@ -1,9 +1,7 @@
 import { FCB_AUTH, FCB_AUTH_FAILED, LOGOUT } from "../actions/actionTypes";
 
 const initialState = {
-  token: localStorage.getItem("accessToken")
-    ? localStorage.getItem("accessToken")
-    : null,
+  token:  localStorage.getItem("accessToken"),
   done: false,
   firstName: localStorage.getItem("firstName"),
   lastName: localStorage.getItem("lastName"),
@@ -33,6 +31,7 @@ export default function authReducers(state = initialState, action) {
       };
     case LOGOUT:
       localStorage.clear();
+      console.log("genesis", initialState);
       return initialState;
 
     default:

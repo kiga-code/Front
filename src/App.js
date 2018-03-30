@@ -16,7 +16,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route path="/" exact component={HomeContainer} />
-          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/dashboard"  component={Dashboard} />
           <Route path="/chatbot"  component={ChatbotContainer} />
           <Route path="*" component={NotFound} />
         </Switch>

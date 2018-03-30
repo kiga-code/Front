@@ -10,6 +10,7 @@ class Home extends Component {
   render() {
     const { hasToken } = this.props;
     if (hasToken) {
+      console.log(hasToken)
       return <Redirect to={"/dashboard"} />;
     }
     return (
@@ -39,7 +40,7 @@ class Home extends Component {
 }
 function mapStateToProps(state) {
   return {
-    hasToken: state.auth ? true : false
+    hasToken: state.auth.token ? true : false
   };
 }
 export default connect(mapStateToProps)(Home);

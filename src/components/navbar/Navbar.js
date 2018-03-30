@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./styles/Navbar.scss";
 import FacebookLogin from "react-facebook-login";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import * as AuthActions from "../../services/redux/actions/AuthActions";
 import { connect } from "react-redux";
@@ -21,8 +21,9 @@ class Navbar extends Component {
 
   handleLogout = () => {
     const { logout } = this.props.actions;
+    const { history } = this.props;
     logout();
-    window.reload();
+    history.push("/");
   };
 
   signup(res) {
@@ -36,7 +37,7 @@ class Navbar extends Component {
     localStorage.setItem("user", JSON.stringify(res));
 
     if (postData) {
-      this.props.dispatch(AuthActions.loginFacebook(postData));
+      this.props.login(postData);
       this.setState({ redirect: true });
     }
   }
@@ -67,9 +68,9 @@ class Navbar extends Component {
           <Link to="/dashboard">
             <li className="Navbar-dropDown-li">Perfil</li>
           </Link>
-          <Link to="/">
+          <a onClick={this.handleLogout}>
             <li className="Navbar-dropDown-li">Sair</li>
-          </Link>
+          </a>
         </ul>
         {hasToken ? (
           <button
@@ -96,12 +97,11 @@ class Navbar extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
-    hasToken: state.auth.token ? true : false,
-    firstName: state.auth.firstName,
-    lastName: state.auth.lastName,
-    picture: state.auth.user.picture.data.url
+    hasToken: state.auth && state.auth.token ? true : false,
+    firstName: state.auth && state.auth.firstName,
+    lastName: state.auth && state.auth.lastName,
+    picture: state.auth && state.auth.user && state.auth.user.picture.data.url
   };
 }
 
@@ -109,10 +109,9 @@ function mapDispatchToProps(dispatch) {
   console.log(dispatch);
   return {
     actions: bindActionCreators(AuthActions, dispatch),
-    chatBot: () => {
-      dispatch(chatBotActions.chatBot({}));
+    login: data => {
+      dispatch(AuthActions.loginFacebook(data));
     }
   };
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
