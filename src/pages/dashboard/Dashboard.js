@@ -83,7 +83,7 @@ function mapStateToProps(state) {
     birth: state.auth && state.auth.user && state.auth.user.birthday,
     email: state.auth && state.auth.user && state.auth.user.email,
     name: state.auth && state.auth.user && state.auth.user.name,
-    location: state.auth && state.auth.user && state.auth.user.location.name,
+    location: state.auth && state.auth.user && state.auth.user.location && state.auth.user.location.name,
     picture: state.auth && state.auth.user && state.auth.user.picture.data.url
   };
 }
