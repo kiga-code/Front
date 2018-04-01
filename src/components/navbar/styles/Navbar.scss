@@ -1,3 +1,6 @@
+.container {
+  padding: 0;
+}
 .Navbar {
   display: flex;
   z-index: 20;
@@ -14,6 +17,23 @@
   font-weight: bold;
   letter-spacing: 0.025em;
   height: 70px;
+  > &-btn {
+    display: none;
+  }
+  > &-check {
+    display: none;
+  }
+  > &-mobile {
+    display: none;
+  }
+  > #nav-check {
+    display: none;
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 14px;
+  }
 
   &-dropDown-true {
     z-index: 20;
@@ -82,9 +102,6 @@
     transform: scale(1.2);
   }
 
-  a {
-    text-decoration: none;
-  }
   &-li {
     width: 80px;
     color: #fff;
@@ -110,13 +127,67 @@
     height: 0;
     -webkit-filter: drop-shadow(0 -2px -2px #aaa);
   }
-
+  &-mobile {
+    display: none;
+  }
   &-icon-button {
     background: transparent;
     border: none;
     outline: 0;
     cursor: pointer;
   }
+}
+
+@media (max-width: 700px) {
+  .container {
+    margin: 0;
+    padding: 0;
+    max-width: unset;
+    .Navbar-Logo-desktop {
+      display: none;
+    }
+    .Navbar-desktop {
+      display: none;
+    }
+    .Navbar {
+      margin: 0;
+      padding: 0;
+      max-width: unset;
+      > .Navbar-btn {
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        z-index: 35;
+        top: 5px;
+
+        .hamburger.active .line:nth-child(2) {
+          opacity: 0;
+        }
+        > label {
+          cursor: pointer;
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          padding: 13px;
+
+          > span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            border-radius: 1px;
+            background-color: #fff;
+            margin-top: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+body.Navbar-active {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
 }
 .picture-icon {
   background: #fff;

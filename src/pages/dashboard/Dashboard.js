@@ -18,16 +18,17 @@ class Dashboard extends Component {
   }
 
   render() {
-    if (!localStorage.getItem("accessToken")) {
-      return <Redirect to="/" />;
-    }
-    const { firstName, birth, email, location, name, picture } = this.props;
+    const {
+      firstName,
+      birth,
+      email,
+      location,
+      name,
+      picture,
+      hasToken
+    } = this.props;
     return (
       <div className="dashboard-container">
-        <div class="load-wrapp">
-          <div class="ring-4">
-          </div>
-        </div>
         <h1 className="dashboard-container-title">Olá {firstName} !</h1>
         <div className="dashboard-container-align">
           <div className="dashboard-container-middle">
@@ -39,7 +40,9 @@ class Dashboard extends Component {
               />
             </span>
             <div className="dashboard-container-right">
-              <h1 className="dashboard-container-name">{name}</h1>
+              <div>
+                <h1 className="dashboard-container-name">{name}</h1>
+              </div>
               <span className="dashboard-container-info">
                 <p>
                   <Calendar />
@@ -64,10 +67,12 @@ class Dashboard extends Component {
                 <h3 className="dashboard-container-icon-title">
                   Frequência cardiaca
                 </h3>{" "}
-                <span className="dashboard-container-icon">
-                  <Heart />
-                  0 bpm{" "}
-                </span>
+                <div>
+                  <span className="dashboard-container-icon">
+                    <Heart />
+                    0 bpm{" "}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -79,11 +84,16 @@ class Dashboard extends Component {
 }
 function mapStateToProps(state) {
   return {
+    hasToken: state.auth ? true : false,
     firstName: state.auth && state.auth.firstName,
     birth: state.auth && state.auth.user && state.auth.user.birthday,
     email: state.auth && state.auth.user && state.auth.user.email,
     name: state.auth && state.auth.user && state.auth.user.name,
-    location: state.auth && state.auth.user && state.auth.user.location && state.auth.user.location.name,
+    location:
+      state.auth &&
+      state.auth.user &&
+      state.auth.user.location &&
+      state.auth.user.location.name,
     picture: state.auth && state.auth.user && state.auth.user.picture.data.url
   };
 }
