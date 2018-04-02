@@ -36,6 +36,7 @@ class Navbar extends Component {
     };
     localStorage.setItem("user", JSON.stringify(res));
 
+    console.log(res);
     if (postData) {
       this.props.login(postData);
       this.setState({ redirect: true });
