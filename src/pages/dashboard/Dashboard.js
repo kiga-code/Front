@@ -7,6 +7,7 @@ import Mail from "../../components/icons/mail";
 import Placeholder from "../../components/icons/placeholder";
 import Heart from "../../components/icons/heart";
 import { connect } from "react-redux";
+import * as heartBeatsActions from "../../services/redux/actions/HeartBeatsActions";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -15,6 +16,10 @@ class Dashboard extends Component {
       redirect: false,
       data: {}
     };
+  }
+
+  componentDidMount() {
+    this.props.heartBeatsActions(this.props.facebookId);
   }
 
   render() {
@@ -30,6 +35,10 @@ class Dashboard extends Component {
       name,
       picture
     } = this.props;
+
+    var requestBeats = {
+      facebookId
+    };
     return (
       <div className="dashboard-container">
         <div class="load-wrapp">
@@ -99,4 +108,12 @@ function mapStateToProps(state) {
     picture: state.auth && state.auth.user && state.auth.user.picture.data.url
   };
 }
-export default connect(mapStateToProps)(Dashboard);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    heartBeatsActions: facebookId => {
+      dispatch(heartBeatsActions.heartData({facebookId}));
+    }
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
