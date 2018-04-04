@@ -48,13 +48,14 @@ class ChatbotPage extends Component {
             onClick={e => {
               e.preventDefault();
               const options = chatValue.filter(item => {
-                return item.option === this.chatArea.value;
+                return item.option == this.chatArea.value;
               });
               if (options.length > 0) {
                 this.props.onSendChat(options[0]);
               } else {
                 console.log("Invalida");
               }
+              this.chatArea.value = "";
             }}
           >
             Enviar
