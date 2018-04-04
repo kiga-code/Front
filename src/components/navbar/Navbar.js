@@ -36,9 +36,8 @@ class Navbar extends Component {
     };
     localStorage.setItem("user", JSON.stringify(res));
     console.log(res);
-
     if (postData) {
-      this.props.login(postData);
+      this.props.login(postData, res);
       this.setState({ redirect: true });
     }
   }
@@ -152,7 +151,12 @@ function mapStateToProps(state) {
     hasToken: state.auth && state.auth.token ? true : false,
     firstName: state.auth && state.auth.firstName,
     lastName: state.auth && state.auth.lastName,
-    picture: state.auth && state.auth.user && state.auth.user.picture.data.url
+    picture:
+      state.auth &&
+      state.auth.user &&
+      state.auth.user.picture &&
+      state.auth.user.picture.data &&
+      state.auth.user.picture.data.url
   };
 }
 
@@ -160,8 +164,8 @@ function mapDispatchToProps(dispatch) {
   console.log(dispatch);
   return {
     actions: bindActionCreators(AuthActions, dispatch),
-    login: data => {
-      dispatch(AuthActions.loginFacebook(data));
+    login: (data, fcbData) => {
+      dispatch(AuthActions.loginFacebook(data, fcbData));
     }
   };
 }

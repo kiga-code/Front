@@ -94,7 +94,12 @@ function mapStateToProps(state) {
       state.auth.user &&
       state.auth.user.location &&
       state.auth.user.location.name,
-    picture: state.auth && state.auth.user && state.auth.user.picture.data.url
+    picture:
+      state.auth &&
+      state.auth.user &&
+      state.auth.user.picture &&
+      state.auth.user.picture.data &&
+      state.auth.user.picture.data.url
   };
 }
 export default connect(mapStateToProps)(Dashboard);
