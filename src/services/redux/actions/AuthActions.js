@@ -1,5 +1,5 @@
 import * as Endpoint from "../../api/EndpointAPI";
-import { FCB_AUTH, LOGOUT } from "../actions/actionTypes";
+import { FCB_AUTH, LOGOUT, USER } from "../actions/actionTypes";
 import axios from "axios";
 
 const config = {
@@ -9,7 +9,7 @@ const config = {
   }
 };
 
-export const loginFacebook = data => dispatch => {
+export const loginFacebook = (data, fcbData) => dispatch => {
   axios
     .post(`${Endpoint.api}/Usuario`, data, config)
     .then(res => {
@@ -20,8 +20,12 @@ export const loginFacebook = data => dispatch => {
       localStorage.setItem("facebookId", res.data.facebookId);
       dispatch({
         type: FCB_AUTH,
-        payload: res.data
+        payload: res.data,
       });
+      dispatch({
+        type: USER,
+        payload: fcbData
+      })
     })
     .catch(error => {
       console.log("error", error);

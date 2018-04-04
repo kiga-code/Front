@@ -44,7 +44,9 @@ class Dashboard extends Component {
               />
             </span>
             <div className="dashboard-container-right">
-              <h1 className="dashboard-container-name">{name}</h1>
+              <div>
+                <h1 className="dashboard-container-name">{name}</h1>
+              </div>
               <span className="dashboard-container-info">
                 <p>
                   <Calendar />
@@ -69,10 +71,12 @@ class Dashboard extends Component {
                 <h3 className="dashboard-container-icon-title">
                   Frequência cardiaca
                 </h3>{" "}
-                <span className="dashboard-container-icon">
-                  <Heart />
-                  0 bpm{" "}
-                </span>
+                <div>
+                  <span className="dashboard-container-icon">
+                    <Heart />
+                    0 bpm{" "}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -85,6 +89,7 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
   return {
     facebookId: state.auth && state.auth.facebookId,
+    hasToken: state.auth ? true : false,
     firstName: state.auth && state.auth.firstName,
     birth: state.auth && state.auth.user && state.auth.user.birthday,
     email: state.auth && state.auth.user && state.auth.user.email,
@@ -94,7 +99,12 @@ function mapStateToProps(state) {
       state.auth.user &&
       state.auth.user.location &&
       state.auth.user.location.name,
-    picture: state.auth && state.auth.user && state.auth.user.picture.data.url,
+    picture:
+      state.auth &&
+      state.auth.user &&
+      state.auth.user.picture &&
+      state.auth.user.picture.data &&
+      state.auth.user.picture.data.url,
     heart: state.heart.data
   };
 }
