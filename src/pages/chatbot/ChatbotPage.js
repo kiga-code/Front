@@ -11,12 +11,12 @@ class ChatbotPage extends Component {
     this.props.chatBot();
   }
   render() {
-    const { chatValue } = this.props;
+    const { chatValue, chatbot } = this.props;
     console.log(this.props);
     return (
       <div className="Chatbot-Container">
-        {chatValue.map(chat => {
-          if (chatValue.length > 0) {
+        {chatbot.map(chat => {
+          if (chatbot.length > 0) {
             return (
               <div className="Chatbot-Container-left">
                 <ChatCard number={chat.option} text={chat.message} />
@@ -25,7 +25,7 @@ class ChatbotPage extends Component {
           } else {
             return (
               <div className="Chatbot-Container-left">
-                <ChatCard text={"Invalido"} />
+                <ChatCard text="Invalido" />
               </div>
             );
           }
@@ -66,8 +66,10 @@ class ChatbotPage extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
-    chatValue: state.chat.value
+    chatValue: state.chat.value,
+    chatbot: state.chat.chat
   };
 }
 

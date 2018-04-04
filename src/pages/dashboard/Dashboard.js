@@ -49,7 +49,7 @@ class Dashboard extends Component {
           <div className="dashboard-container-middle">
             <span className="dashboard-container-circle">
               <img
-                src={`http://graph.facebook.com/${facebookId}/picture?type=large`}
+                src={`https://graph.facebook.com/${facebookId}/picture?type=large`}
                 className="dashboard-container-picture"
                 alt={name}
               />
@@ -105,14 +105,15 @@ function mapStateToProps(state) {
       state.auth.user &&
       state.auth.user.location &&
       state.auth.user.location.name,
-    picture: state.auth && state.auth.user && state.auth.user.picture.data.url
+    picture: state.auth && state.auth.user && state.auth.user.picture.data.url,
+    heart: state.heart.data
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     heartBeatsActions: facebookId => {
-      dispatch(heartBeatsActions.heartData({facebookId}));
+      dispatch(heartBeatsActions.heartData({ facebookId }));
     }
   };
 }
