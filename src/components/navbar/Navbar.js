@@ -5,7 +5,6 @@ import { Link, withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import * as AuthActions from "../../services/redux/actions/AuthActions";
 import { connect } from "react-redux";
-import * as chatBotActions from "../../services/redux/actions/ChatbotActions";
 import Logo from "../../images/kiga.png";
 
 class Navbar extends Component {

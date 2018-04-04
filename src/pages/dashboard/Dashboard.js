@@ -26,19 +26,8 @@ class Dashboard extends Component {
     if (!localStorage.getItem("accessToken")) {
       return <Redirect to="/" />;
     }
-    const {
-      facebookId,
-      firstName,
-      birth,
-      email,
-      location,
-      name,
-      picture
-    } = this.props;
+    const { facebookId, firstName, birth, email, location, name } = this.props;
 
-    var requestBeats = {
-      facebookId
-    };
     return (
       <div className="dashboard-container">
         <div class="load-wrapp">
