@@ -11,7 +11,7 @@ class ChatbotPage extends Component {
     this.props.chatBot();
   }
   render() {
-    const { chatValue } = this.props;
+    const { chatValue, chatbot } = this.props;
     console.log(this.props);
     return (
       <div className="Chatbot">
@@ -78,8 +78,10 @@ class ChatbotPage extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
-    chatValue: state.chat.value
+    chatValue: state.chat.value,
+    chatbot: state.chat.chat
   };
 }
 

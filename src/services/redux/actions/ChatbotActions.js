@@ -22,7 +22,6 @@ export const chatBot = data => dispatch => {
 };
 
 export const chatBotSend = data => dispatch => {
-  console.log(data)
   axios
     .post(`${Endpoint.api}/Chat/message`, data, config)
     .then(res => {

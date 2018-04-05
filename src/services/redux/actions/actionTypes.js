@@ -6,3 +6,6 @@ export const USER = "USER";
 
 export const CHAT_BOT_SEND = "CHAT_BOT_SEND";
 export const CHAT_BOT = "CHAT_BOT";
+
+export const BPM = "BPM";
+export const BPM_FAILED = "BPM_FAILED";

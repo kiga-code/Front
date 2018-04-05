@@ -7,6 +7,7 @@ import Mail from "../../components/icons/mail";
 import Placeholder from "../../components/icons/placeholder";
 import Heart from "../../components/icons/heart";
 import { connect } from "react-redux";
+import * as heartBeatsActions from "../../services/redux/actions/HeartBeatsActions";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -17,6 +18,10 @@ class Dashboard extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.heartBeatsActions(this.props.facebookId);
+  }
+
   render() {
     const {
       firstName,
@@ -25,6 +30,7 @@ class Dashboard extends Component {
       location,
       name,
       picture,
+      facebookId,
       hasToken
     } = this.props;
     return (
@@ -34,7 +40,7 @@ class Dashboard extends Component {
           <div className="dashboard-container-middle">
             <span className="dashboard-container-circle">
               <img
-                src={picture}
+                src={`https://graph.facebook.com/${facebookId}/picture?type=large`}
                 className="dashboard-container-picture"
                 alt={name}
               />
@@ -85,6 +91,7 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
   return {
     hasToken: state.auth ? true : false,
+    facebookId: state.auth && state.auth.facebookId,
     firstName: state.auth && state.auth.firstName,
     birth: state.auth && state.auth.user && state.auth.user.birthday,
     email: state.auth && state.auth.user && state.auth.user.email,
@@ -99,7 +106,16 @@ function mapStateToProps(state) {
       state.auth.user &&
       state.auth.user.picture &&
       state.auth.user.picture.data &&
-      state.auth.user.picture.data.url
+      state.auth.user.picture.data.url,
+    heart: state.heart.data
   };
 }
-export default connect(mapStateToProps)(Dashboard);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    heartBeatsActions: facebookId => {
+      dispatch(heartBeatsActions.heartData({ facebookId }));
+    }
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

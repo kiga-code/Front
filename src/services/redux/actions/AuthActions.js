@@ -20,12 +20,12 @@ export const loginFacebook = (data, fcbData) => dispatch => {
       localStorage.setItem("facebookId", res.data.facebookId);
       dispatch({
         type: FCB_AUTH,
-        payload: res.data,
+        payload: res.data
       });
       dispatch({
         type: USER,
         payload: fcbData
-      })
+      });
     })
     .catch(error => {
       console.log("error", error);
