@@ -2,4 +2,128 @@
   display: flex;
   z-index: 20;
   justify-content: space-between;
+  min-height: 60px;
+  align-items: center;
+  padding: 0 calc(10% + 1rem);
+  position: relative;
+  background: #310e57;
+  border-bottom: 1px solid #310e57;
+  box-shadow: 1px 1px 1px 0 #370460;
+  flex: 0 60px;
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  height: 70px;
+
+  &-dropDown-true {
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    min-width: 200px;
+    width: 80px;
+    box-shadow: rgba(0, 0, 0, 0.11765) 0px 1px 6px,
+      rgba(0, 0, 0, 0.11765) 0px 1px 4px;
+    height: 80px;
+    margin-top: 159px;
+    margin-right: -80px;
+  }
+
+  &-dropDown-li {
+    text-decoration: none;
+    list-style: none;
+    padding: 3px;
+    margin: 3px;
+    color: #370460;
+    cursor: pointer;
+  }
+
+  &-dropDown-false {
+    display: none;
+  }
+
+  &-logo {
+    margin: 0;
+  }
+  &-link {
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  &-link-logo {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 10px;
+    outline: 0;
+  }
+
+  &-ul {
+    font-size: 1rem;
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+    top: 0;
+    padding: 2rem;
+    display: flex;
+    width: 100%;
+    list-style: none;
+    position: initial;
+    height: initial;
+    width: initial;
+    display: flex;
+    text-align: center;
+    width: 100%;
+  }
+  &-li:hover {
+    opacity: 0.75;
+    transform: scale(1.2);
+  }
+
+  a {
+    text-decoration: none;
+  }
+  &-li {
+    width: 80px;
+    color: #fff;
+  }
+  &-logo {
+    transition: transform 0.2s;
+    height: 130px;
+    width: 130px;
+    outline: 0;
+  }
+  &-logo:hover {
+    transform: scale(1.2);
+  }
+
+  &-dropDown-arrow {
+    position: absolute;
+    top: 60px;
+    right: 14%;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #fff;
+    width: 0;
+    height: 0;
+    -webkit-filter: drop-shadow(0 -2px -2px #aaa);
+  }
+
+  &-icon-button {
+    background: transparent;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+  }
+}
+.picture-icon {
+  background: #fff;
+  border-radius: 60px;
+  height: 50px;
+  border: 1px solid #fff;
+  width: 50px;
+  object-fit: cover;
 }

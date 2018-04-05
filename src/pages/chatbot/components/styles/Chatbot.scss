@@ -1,0 +1,23 @@
+.Card-Chatbot-user {
+  width: 50%;
+  height: 70px;
+  border-radius: 20px;
+  background-color: #c83967;
+
+  &-text {
+    color: #fff;
+    padding: 10px;
+  }
+}
+
+.Card-Chatbot {
+  width: 50%;
+  height: 70px;
+  border-radius: 20px;
+  background-color: #370460;
+
+  &-text {
+    color: #fff;
+    padding: 10px;
+  }
+}

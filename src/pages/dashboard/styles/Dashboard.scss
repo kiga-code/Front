@@ -1,0 +1,98 @@
+body {
+  overflow: hidden;
+}
+
+.dashboard-container {
+  background: linear-gradient(rgb(188, 171, 205), rgb(175, 130, 218));
+  width: 100%;
+  height: 100vh;
+
+  .load-wrapp {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    padding: 20px 20px 20px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: transparent;
+  }
+
+  .ring-1 {
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 7px dashed #4b9cdb;
+    border-radius: 100%;
+  }
+
+  &-middle {
+    height: 300px;
+    width: 800px;
+    background: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 700px;
+    margin-top: 30px;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.11765) 0px 1px 6px,
+      rgba(0, 0, 0, 0.11765) 0px 1px 4px;
+  }
+
+  &-title {
+    padding: 40px;
+    color: #fff;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+
+  &-circle {
+    padding: 20px;
+  }
+
+  &-right {
+    height: 100%;
+    width: 100%;
+  }
+  &-info {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  &-name {
+    width: 100%;
+    height: 50px;
+    padding: 26px;
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    padding-left: 33px;
+
+    &-title {
+      padding-left: 33px;
+    }
+
+    &-heart {
+      margin-left: 5px;
+    }
+  }
+
+  &-picture {
+    background: #fff;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    z-index: 60;
+    box-shadow: rgba(0, 0, 0, 0.11765) 0px 1px 6px,
+      rgba(0, 0, 0, 0.11765) 0px 1px 4px;
+  }
+}

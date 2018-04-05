@@ -1,0 +1,55 @@
+.Chatbot-Container {
+  overflow: auto;
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 70%;
+  height: 540px;
+  background-color: #a990c1;
+  border-radius: 20px;
+  padding: 20px;
+
+  &::-webkit-scrollbar-track {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+    background: #f4f4f4;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+    border-radius: 10px;
+  }
+
+  &-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-left {
+    padding: 5px;
+  }
+
+  &-down {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 54%;
+  }
+
+  &-button {
+    margin-left: 5px;
+    border: 0;
+    background-color: #370460;
+    color: #fff;
+    border-radius: 3px;
+  }
+}
+.Chatbot-fild {
+  resize: none;
+  outline: 0;
+  border-radius: 15px;
+  width: 92%;
+}
