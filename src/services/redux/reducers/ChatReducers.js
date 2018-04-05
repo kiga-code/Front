@@ -1,14 +1,20 @@
-import { CHAT_BOT } from "../actions/actionTypes";
+import { CHAT_BOT, CHAT_BOT_SEND } from "../actions/actionTypes";
 
 const initialState = {
   data: {},
   value: [],
   error: null,
-  chat: []
+  chat: [],
+  user:[]
 };
 
 export default function chatReducer(state = initialState, action) {
   switch (action.type) {
+    case CHAT_BOT_SEND:
+      return {
+        ...state,
+        user: state.chat.concat(action.payload)
+      }
     case CHAT_BOT:
       return {
         ...state,

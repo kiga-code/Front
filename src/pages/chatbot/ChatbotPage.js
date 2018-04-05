@@ -17,8 +17,8 @@ class ChatbotPage extends Component {
       <div className="Chatbot">
         <h1 className="Chatbot-title">Chatbot</h1>
         <div className="Chatbot-Container">
-          {chatValue.map(chat => {
-            if (chatValue.length > 0) {
+          {chatbot.map(chat => {
+            if (chatbot.length > 0) {
               return (
                 <div className="Chatbot-Container-left">
                   <ChatCard
@@ -52,17 +52,19 @@ class ChatbotPage extends Component {
               ref={chatText => {
                 this.chatArea = chatText;
               }}
-              rows="5"
+              rows="3"
             />
             <Button
               styleClass="Chatbot-Container-button"
               onClick={e => {
                 e.preventDefault();
                 const options = chatValue.filter(item => {
-                  return item.option === this.chatArea.value;
+                  const value = this.chatArea.value;
+                  this.chatArea.value = '';
+                  return item.option == value;
                 });
                 if (options.length >= 1) {
-                  this.props.onSendChat(options[0]);
+                  this.props.onSendChat(options[0], true);
                 } else {
                   console.log("Invalida");
                 }

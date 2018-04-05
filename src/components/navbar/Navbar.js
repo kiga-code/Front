@@ -19,6 +19,7 @@ class Navbar extends Component {
     this.signup = this.signup.bind(this);
   }
 
+  // Logout
   handleLogout = () => {
     const { logout } = this.props.actions;
     const { history } = this.props;
@@ -26,9 +27,9 @@ class Navbar extends Component {
     history.push("/");
   };
 
+  // Loggin
   signup(res) {
     let postData;
-
     postData = {
       firstName: res.first_name,
       lastName: res.last_name,
@@ -42,10 +43,12 @@ class Navbar extends Component {
     }
   }
 
+  // Change state
   handleClick() {
     this.setState({ open: !this.state.open });
   }
 
+  // OPEN MENU
   toggleMenu() {
     if (window.innerWidth <= 700) {
       this.setState(state => ({ checked: !state.checked }));
@@ -76,10 +79,11 @@ class Navbar extends Component {
           <input
             type="checkbox"
             id="nav-check"
-            oonChange={() => this.toggleMenu()}
+            onChange={() => this.toggleMenu()}
             checked={this.state.checked}
           />
           <div className="Navbar-links">
+          {/* MOBILE */}
             <div className="Navbar-mobile">
               <img src={picture} className="picture-icon" alt={firstName} />
               <Link to="/" onClick={() => this.toggleMenu()}>
@@ -95,6 +99,7 @@ class Navbar extends Component {
                 <li className="Navbar-dropDown-li">Sair</li>
               </a>
             </div>
+            {/* DESKTOP */}
             <div className="Navbar-desktop">
               <div className="Navbar-Logo-desktop">
                 <Link className="Navbar-link-logo" to="/">
@@ -110,6 +115,7 @@ class Navbar extends Component {
               ) : (
                 ""
               )}
+              {/* DROPDOWN */}
               <ul className={"Navbar-dropDown-" + this.state.open}>
                 <div className="Navbar-dropDown-arrow" />
                 <Link
@@ -129,6 +135,7 @@ class Navbar extends Component {
                   <li className="Navbar-dropDown-li">Sair</li>
                 </a>
               </ul>
+              {/* FACEBOOKLOGIN */}
               {hasToken ? (
                 <button
                   className="Navbar-icon-button"
