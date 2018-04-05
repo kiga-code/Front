@@ -15,8 +15,8 @@ class ChatbotPage extends Component {
     console.log(this.props);
     return (
       <div className="Chatbot-Container">
-        {chatbot.map(chat => {
-          if (chatbot.length > 0) {
+        {chatValue.map(chat => {
+          if (chatValue.length > 0) {
             return (
               <div className="Chatbot-Container-left">
                 <ChatCard number={chat.option} text={chat.message} />
@@ -30,9 +30,13 @@ class ChatbotPage extends Component {
             );
           }
         })}
-        <div className="Chatbot-Container-right">
-          <UserCard text={this.chatArea ? this.chatArea.value : null} />
-        </div>
+        {chatValue.value > 0 ? (
+          <div className="Chatbot-Container-right">
+            <UserCard text={this.chatArea ? this.chatArea.value : null} />
+          </div>
+        ) : (
+          ""
+        )}
         <div className="Chatbot-Container-down">
           <textarea
             placeholder="Escreva aqui..."

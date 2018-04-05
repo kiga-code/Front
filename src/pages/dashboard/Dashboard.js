@@ -23,9 +23,9 @@ class Dashboard extends Component {
   }
 
   render() {
-    if (!localStorage.getItem("accessToken")) {
-      return <Redirect to="/" />;
-    }
+    // if (!localStorage.getItem("accessToken")) {
+    //   return <Redirect to="/" />;
+    // }
     const { facebookId, firstName, birth, email, location, name } = this.props;
 
     return (

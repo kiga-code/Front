@@ -1,7 +1,12 @@
-import { FCB_AUTH, FCB_AUTH_FAILED, LOGOUT } from "../actions/actionTypes";
+import {
+  FCB_AUTH,
+  FCB_AUTH_FAILED,
+  LOGOUT,
+  USER
+} from "../actions/actionTypes";
 
 const initialState = {
-  token:  localStorage.getItem("accessToken"),
+  token: localStorage.getItem("accessToken"),
   done: false,
   firstName: localStorage.getItem("firstName"),
   lastName: localStorage.getItem("lastName"),
@@ -24,6 +29,12 @@ export default function authReducers(state = initialState, action) {
         lastName: action.payload.lastName,
         facebookId: action.payload.facebookId
       };
+
+    case USER:
+      return {
+        ...state,
+        user: action.payload
+      };
     case FCB_AUTH_FAILED:
       return {
         ...state,
@@ -32,7 +43,7 @@ export default function authReducers(state = initialState, action) {
     case LOGOUT:
       localStorage.clear();
       console.log("genesis", initialState);
-      return initialState;
+      return {};
 
     default:
       return state;

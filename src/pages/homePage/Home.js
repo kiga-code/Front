@@ -9,10 +9,10 @@ import { Redirect } from "react-router-dom";
 class Home extends Component {
   render() {
     const { hasToken } = this.props;
-    if (hasToken) {
-      console.log(hasToken)
-      return <Redirect to={"/dashboard"} />;
-    }
+    // if (hasToken) {
+    //   console.log(hasToken)
+    //   return <Redirect to={"/dashboard"} />;
+    // }
     return (
       <div className="home-container">
         <div className="home-container-left">
