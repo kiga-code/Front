@@ -13,7 +13,7 @@ export default function chatReducer(state = initialState, action) {
     case CHAT_BOT_SEND:
       return {
         ...state,
-        user: state.chat.concat(action.payload)
+        user: state.user.concat(action.payload)
       }
     case CHAT_BOT:
       return {

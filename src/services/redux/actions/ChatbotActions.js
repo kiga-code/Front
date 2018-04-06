@@ -22,7 +22,6 @@ export const chatBot = data => dispatch => {
 };
 
 export const chatBotSend = (data, isUser) => dispatch => {
-    console.log(data)
   dispatch({
     type: CHAT_BOT_SEND,
     payload: {
