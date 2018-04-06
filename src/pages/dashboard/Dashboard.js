@@ -31,8 +31,10 @@ class Dashboard extends Component {
       name,
       picture,
       facebookId,
-      hasToken
+      hasToken,
+      heart
     } = this.props;
+    console.log(heart);
     return (
       <div className="dashboard-container">
         <h1 className="dashboard-container-title">Olá {firstName} !</h1>
@@ -53,32 +55,32 @@ class Dashboard extends Component {
                 <p>
                   <Calendar />
                   <b>
-                    {moment(birth)
-                      .locale("pt-br")
-                      .format("LL")}
+                    {birth
+                      ? moment(birth)
+                          .locale("pt-br")
+                          .format("LL")
+                      : "Data não encontrada"}
                   </b>
                 </p>
                 <p>
                   {" "}
                   <Mail />
-                  {email}
+                  {email ? email : "Email não encontrado"}
                 </p>
                 <p>
                   {" "}
                   <Placeholder />
-                  {location}
+                  {location ? location : "Localização não encontrada"}
                 </p>
               </span>
               <div>
                 <h3 className="dashboard-container-icon-title">
                   Frequência cardiaca
                 </h3>{" "}
-                <div>
-                  <span className="dashboard-container-icon">
-                    <Heart />
-                    0 bpm{" "}
-                  </span>
-                </div>
+                <span className="dashboard-container-icon">
+                  <Heart />
+                  {this.props.heart} bpm{" "}
+                </span>
               </div>
             </div>
           </div>
@@ -107,7 +109,7 @@ function mapStateToProps(state) {
       state.auth.user.picture &&
       state.auth.user.picture.data &&
       state.auth.user.picture.data.url,
-    heart: state.heart.data
+    heart: state.heart.data.bpm
   };
 }
 

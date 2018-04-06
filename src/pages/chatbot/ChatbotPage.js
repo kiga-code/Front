@@ -14,65 +14,56 @@ class ChatbotPage extends Component {
     const { chatValue, chatbot, user } = this.props;
     console.log(this.props);
     return (
-      <div className="Chatbot">
-        <h1 className="Chatbot-title">Chatbot</h1>
-        <div className="Chatbot-Container">
-          {chatbot.map(chat => {
-            if (chatbot.length > 0) {
-              return (
-                <div className="Chatbot-Container-left">
-                  <ChatCard
-                    key={chat.id}
-                    number={chat.option}
-                    text={chat.message}
-                  />
-                </div>
-              );
-            } else {
-              return (
-                <div className="Chatbot-Container-left">
-                  <ChatCard text="Invalido" />
-                </div>
-              );
-            }
-          })}
-          {chatValue.value > 0 ? (
-            <div className="Chatbot-Container-right">
-              <UserCard text={this.chatArea ? this.chatArea.value : null} />
-            </div>
-          ) : (
-            ""
-          )}
-
-          <div className="Chatbot-Container-down">
-            <textarea
-              placeholder="Escreva aqui..."
-              className="Chatbot-fild"
-              required
-              ref={chatText => {
-                this.chatArea = chatText;
-              }}
-              rows="3"
-            />
-            <Button
-              styleClass="Chatbot-Container-button"
-              onClick={e => {
-                e.preventDefault();
-                const options = chatValue.filter(item => {
-                  const value = this.chatArea.value;
-                  this.chatArea.value = '';
-                  return item.option == value;
-                });
-                if (options.length >= 1) {
-                  this.props.onSendChat(options[0], true);
-                } else {
-                  console.log("Invalida");
-                }
-              }}
-            >
-              Enviar
-            </Button>
-          </div>
+      <div className="Chatbot-Container">
+        {chatValue.map(chat => {
+          if (chatValue.length > 0) {
+            return (
+              <div className="Chatbot-Container-left">
+                <ChatCard number={chat.option} text={chat.message} />
+              </div>
+            );
+          } else {
+            return (
+              <div className="Chatbot-Container-left">
+                <ChatCard text="Invalido" />
+              </div>
+            );
+          }
+        })}
+        {user > 0
+          ? user.map((chat, index) => {
+              <div className="Chatbot-Container-right">
+                <UserCard key={index} text={chat.message} />
+              </div>;
+            })
+          : ""}
+        <div className="Chatbot-Container-down">
+          <textarea
+            placeholder="Escreva aqui..."
+            className="Chatbot-fild"
+            required
+            ref={chatText => {
+              this.chatArea = chatText;
+            }}
+            rows="5"
+          />
+          <Button
+            styleClass="Chatbot-Container-button"
+            onClick={e => {
+              e.preventDefault();
+              const options = chatValue.filter(item => {
+                return item.option == this.chatArea.value;
+              });
+              if (options.length > 0) {
+                this.props.onSendChat(options[0]);
+              } else {
+                console.log("Invalida");
+              }
+              this.chatArea.value = "";
+            }}
+          >
+            Enviar
+          </Button>
         </div>
       </div>
     );
@@ -84,7 +75,7 @@ function mapStateToProps(state) {
   return {
     chatValue: state.chat.value,
     chatbot: state.chat.chat,
-    user: state.chat.user
+    user: state.chat.users
   };
 }
 
