@@ -65,10 +65,15 @@ class Navbar extends Component {
         )}
         <ul className={"Navbar-dropDown-" + this.state.open}>
           <div className="Navbar-dropDown-arrow" />
-          <Link to="/dashboard">
+          <Link to="/dashboard" onClick={() => this.handleClick()}>
             <li className="Navbar-dropDown-li">Perfil</li>
           </Link>
-          <a onClick={this.handleLogout}>
+          <a
+            onClick={() => {
+              this.handleLogout();
+              this.handleClick();
+            }}
+          >
             <li className="Navbar-dropDown-li">Sair</li>
           </a>
         </ul>
