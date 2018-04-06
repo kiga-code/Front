@@ -21,6 +21,11 @@ export const chatBot = data => dispatch => {
     .catch(error => error);
 };
 
+export const addChat = data => dispatch => dispatch({
+  type: CHAT_BOT,
+  data
+})
+
 export const chatBotSend = data => dispatch => {
   axios
     .post(`${Endpoint.api}/Chat/message`, data, config)
