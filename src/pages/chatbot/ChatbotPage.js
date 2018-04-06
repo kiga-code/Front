@@ -30,13 +30,12 @@ class ChatbotPage extends Component {
             );
           }
         })}
-        {user > 0
-          ? user.map((chat, index) => {
-              <div className="Chatbot-Container-right">
-                <UserCard key={index} text={chat.message} />
-              </div>;
-            })
-          : ""}
+        {user.map((chat, index) => {
+          <div className="Chatbot-Container-right">
+            <UserCard key={index} text={chat.id} />
+          </div>
+        })}
+
         <div className="Chatbot-Container-down">
           <textarea
             placeholder="Escreva aqui..."
@@ -75,7 +74,7 @@ function mapStateToProps(state) {
   return {
     chatValue: state.chat.value,
     chatbot: state.chat.chat,
-    user: state.chat.users
+    user: state.chat.user
   };
 }
 
