@@ -26,8 +26,16 @@ class Dashboard extends Component {
     // if (!localStorage.getItem("accessToken")) {
     //   return <Redirect to="/" />;
     // }
-    const { facebookId, firstName, birth, email, location, name } = this.props;
-
+    const {
+      facebookId,
+      firstName,
+      birth,
+      email,
+      location,
+      name,
+      heart
+    } = this.props;
+    console.log(heart);
     return (
       <div className="dashboard-container">
         <div class="load-wrapp">
@@ -49,20 +57,22 @@ class Dashboard extends Component {
                 <p>
                   <Calendar />
                   <b>
-                    {moment(birth)
-                      .locale("pt-br")
-                      .format("LL")}
+                    {birth
+                      ? moment(birth)
+                          .locale("pt-br")
+                          .format("LL")
+                      : "Data não encontrada"}
                   </b>
                 </p>
                 <p>
                   {" "}
                   <Mail />
-                  {email}
+                  {email ? email : "Email não encontrado"}
                 </p>
                 <p>
                   {" "}
                   <Placeholder />
-                  {location}
+                  {location ? location : "Localização não encontrada"}
                 </p>
               </span>
               <div>
@@ -71,7 +81,7 @@ class Dashboard extends Component {
                 </h3>{" "}
                 <span className="dashboard-container-icon">
                   <Heart />
-                  0 bpm{" "}
+                  {this.props.heart} bpm{" "}
                 </span>
               </div>
             </div>
@@ -95,7 +105,7 @@ function mapStateToProps(state) {
       state.auth.user.location &&
       state.auth.user.location.name,
     picture: state.auth && state.auth.user && state.auth.user.picture.data.url,
-    heart: state.heart.data
+    heart: state.heart.data.bpm
   };
 }
 
