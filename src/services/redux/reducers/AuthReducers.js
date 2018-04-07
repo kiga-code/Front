@@ -42,7 +42,6 @@ export default function authReducers(state = initialState, action) {
       };
     case LOGOUT:
       localStorage.clear();
-      console.log("genesis", initialState);
       return {};
 
     default:

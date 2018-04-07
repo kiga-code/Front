@@ -23,16 +23,19 @@ class Dashboard extends Component {
   }
 
   render() {
-    // if (!localStorage.getItem("accessToken")) {
-    //   return <Redirect to="/" />;
-    // }
-    const { facebookId, firstName, birth, email, location, name } = this.props;
-
+    const {
+      firstName,
+      birth,
+      email,
+      location,
+      name,
+      picture,
+      facebookId,
+      hasToken,
+      heart
+    } = this.props;
     return (
       <div className="dashboard-container">
-        <div class="load-wrapp">
-          <div class="ring-4" />
-        </div>
         <h1 className="dashboard-container-title">Olá {firstName} !</h1>
         <div className="dashboard-container-align">
           <div className="dashboard-container-middle">
@@ -44,25 +47,29 @@ class Dashboard extends Component {
               />
             </span>
             <div className="dashboard-container-right">
-              <h1 className="dashboard-container-name">{name}</h1>
+              <div>
+                <h1 className="dashboard-container-name">{name}</h1>
+              </div>
               <span className="dashboard-container-info">
                 <p>
                   <Calendar />
                   <b>
-                    {moment(birth)
-                      .locale("pt-br")
-                      .format("LL")}
+                    {birth
+                      ? moment(birth)
+                          .locale("pt-br")
+                          .format("LL")
+                      : "Data não encontrada"}
                   </b>
                 </p>
                 <p>
                   {" "}
                   <Mail />
-                  {email}
+                  {email ? email : "Email não encontrado"}
                 </p>
                 <p>
                   {" "}
                   <Placeholder />
-                  {location}
+                  {location ? location : "Localização não encontrada"}
                 </p>
               </span>
               <div>
@@ -71,7 +78,7 @@ class Dashboard extends Component {
                 </h3>{" "}
                 <span className="dashboard-container-icon">
                   <Heart />
-                  0 bpm{" "}
+                  {this.props.heart} bpm{" "}
                 </span>
               </div>
             </div>
@@ -84,6 +91,7 @@ class Dashboard extends Component {
 }
 function mapStateToProps(state) {
   return {
+    hasToken: state.auth ? true : false,
     facebookId: state.auth && state.auth.facebookId,
     firstName: state.auth && state.auth.firstName,
     birth: state.auth && state.auth.user && state.auth.user.birthday,
@@ -94,8 +102,13 @@ function mapStateToProps(state) {
       state.auth.user &&
       state.auth.user.location &&
       state.auth.user.location.name,
-    picture: state.auth && state.auth.user && state.auth.user.picture.data.url,
-    heart: state.heart.data
+    picture:
+      state.auth &&
+      state.auth.user &&
+      state.auth.user.picture &&
+      state.auth.user.picture.data &&
+      state.auth.user.picture.data.url,
+    heart: state.heart.data.bpm
   };
 }
 

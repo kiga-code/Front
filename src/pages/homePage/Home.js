@@ -9,10 +9,6 @@ import { Redirect } from "react-router-dom";
 class Home extends Component {
   render() {
     const { hasToken } = this.props;
-    // if (hasToken) {
-    //   console.log(hasToken)
-    //   return <Redirect to={"/dashboard"} />;
-    // }
     return (
       <div className="home-container">
         <div className="home-container-left">
@@ -25,11 +21,13 @@ class Home extends Component {
             paciente em forma de chatbot para ele acompanhar e analisar um
             pós-diagnóstico.
           </p>
-          <a href={Kiga}>
-            <Button styleClass="home-container-description-button">
-              Saiba Mais
-            </Button>
-          </a>
+          <div className="home-container-button">
+            <a href={Kiga}>
+              <Button styleClass="home-container-description-button">
+                Saiba Mais
+              </Button>
+            </a>
+          </div>
         </div>
         <div className="home-container-right">
           <img src={Iphone} className="home-container-image" alt="kiga" />

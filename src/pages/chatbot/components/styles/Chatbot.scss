@@ -3,10 +3,10 @@
   height: 70px;
   border-radius: 20px;
   background-color: #c83967;
-
+  min-width: 100px;
   &-text {
     color: #fff;
-    padding: 10px;
+    padding: 5px;
   }
 }
 
@@ -15,9 +15,9 @@
   height: 70px;
   border-radius: 20px;
   background-color: #370460;
-
+  min-width: 100px;
   &-text {
     color: #fff;
-    padding: 10px;
+    padding: 5px;
   }
 }
