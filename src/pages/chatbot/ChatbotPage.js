@@ -5,18 +5,43 @@ import ChatCard from "./components/ChatCard";
 import "./styles/ChatbotPage.scss";
 import { connect } from "react-redux";
 import * as chatBotActions from "../../services/redux/actions/ChatbotActions";
-
 class ChatbotPage extends Component {
+  state = {
+    list: []
+  };
+  componentWillReceiveProps(nextProps) {
+    if (this.state.list.length === 0) {
+      this.setState({
+        list: this.state.list.concat(
+          Object.keys(nextProps.chatbot).map(key => nextProps.chatbot[key])
+        )
+      });
+    } else {
+      const copyChatbot = { ...nextProps.chatbot };
+      console.log("copyChatbot", copyChatbot);
+      this.state.list.forEach(item => {
+        console.log("item.id", item.id);
+        item.id && delete copyChatbot[item.id];
+      });
+      console.log("copyChatbot", copyChatbot);
+      this.setState({
+        list: this.state.list.concat(
+          Object.keys(copyChatbot)
+            .map(key => nextProps.chatbot[key])
+            .filter()
+        )
+      });
+    }
+  }
   componentDidMount() {
     this.props.chatBot();
   }
   render() {
     const { chatValue, chatbot, user } = this.props;
-    console.log(this.props);
     return (
       <div className="Chatbot-Container">
-        {chatValue.map(chat => {
-          if (chatValue.length > 0) {
+        {this.state.list.map(chat => {
+          if (chat.option) {
             return (
               <div className="Chatbot-Container-left">
                 <ChatCard number={chat.option} text={chat.message} />
@@ -24,16 +49,11 @@ class ChatbotPage extends Component {
             );
           } else {
             return (
-              <div className="Chatbot-Container-left">
-                <ChatCard text="Invalido" />
+              <div className="Chatbot-Container-right">
+                <UserCard text={chat.id} />
               </div>
             );
           }
-        })}
-        {user.map((chat, index) => {
-          <div className="Chatbot-Container-right">
-            <UserCard key={index} text={chat.id} />
-          </div>
         })}
 
         <div className="Chatbot-Container-down">
@@ -44,7 +64,7 @@ class ChatbotPage extends Component {
             ref={chatText => {
               this.chatArea = chatText;
             }}
-            rows="5"
+            rows="3"
           />
           <Button
             styleClass="Chatbot-Container-button"
@@ -59,6 +79,7 @@ class ChatbotPage extends Component {
                 console.log("Invalida");
               }
               this.chatArea.value = "";
+              this.setState({ list: this.state.list.concat(options[0]) });
             }}
           >
             Enviar
@@ -68,23 +89,18 @@ class ChatbotPage extends Component {
     );
   }
 }
-
 function mapStateToProps(state) {
-  console.log(state);
   return {
     chatValue: state.chat.value,
     chatbot: state.chat.chat,
     user: state.chat.user
   };
 }
-
 function mapDispatchToProps(dispatch) {
-  console.log(dispatch);
   return {
     chatBot: () => {
       dispatch(chatBotActions.chatBot({}));
     }
   };
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(ChatbotPage);

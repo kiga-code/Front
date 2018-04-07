@@ -34,7 +34,6 @@ class Dashboard extends Component {
       hasToken,
       heart
     } = this.props;
-    console.log(heart);
     return (
       <div className="dashboard-container">
         <h1 className="dashboard-container-title">Olá {firstName} !</h1>

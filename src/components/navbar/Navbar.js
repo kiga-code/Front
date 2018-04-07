@@ -36,7 +36,6 @@ class Navbar extends Component {
       facebookId: res.id
     };
     localStorage.setItem("user", JSON.stringify(res));
-    console.log(res);
     if (postData) {
       this.props.login(postData, res);
       this.setState({ redirect: true });
@@ -53,9 +52,9 @@ class Navbar extends Component {
     if (window.innerWidth <= 700) {
       this.setState(state => ({ checked: !state.checked }));
       if (this.state.checked) {
-        document.body.classList.remove("navbar-active");
+        document.body.classList.remove("Navbar-active");
       } else {
-        document.body.classList.add("navbar-active");
+        document.body.classList.add("Navbar-active");
       }
     }
   }
@@ -83,7 +82,7 @@ class Navbar extends Component {
             checked={this.state.checked}
           />
           <div className="Navbar-links">
-          {/* MOBILE */}
+            {/* MOBILE */}
             <div className="Navbar-mobile">
               <img src={picture} className="picture-icon" alt={firstName} />
               <Link to="/" onClick={() => this.toggleMenu()}>
@@ -99,63 +98,64 @@ class Navbar extends Component {
                 <li className="Navbar-dropDown-li">Sair</li>
               </a>
             </div>
-            {/* DESKTOP */}
-            <div className="Navbar-desktop">
-              <div className="Navbar-Logo-desktop">
-                <Link className="Navbar-link-logo" to="/">
-                  <img className="Navbar-logo" src={Logo} alt="Logo" />
-                </Link>
-              </div>
-              {hasToken ? (
-                <ul className="Navbar-ul">
-                  <Link to="/chatbot">
-                    <li className="Navbar-li">Chatbot</li>
-                  </Link>
-                </ul>
-              ) : (
-                ""
-              )}
-              {/* DROPDOWN */}
-              <ul className={"Navbar-dropDown-" + this.state.open}>
-                <div className="Navbar-dropDown-arrow" />
-                <Link
-                  to="/dashboard"
-                  onclick={() => {
-                    this.handleClick();
-                  }}
-                >
-                  <li className="Navbar-dropDown-li">Perfil</li>
-                </Link>
-                <a
-                  onClick={() => {
-                    this.handleLogout();
-                    this.handleClick();
-                  }}
-                >
-                  <li className="Navbar-dropDown-li">Sair</li>
-                </a>
-              </ul>
-              {/* FACEBOOKLOGIN */}
-              {hasToken ? (
-                <button
-                  className="Navbar-icon-button"
-                  onClick={() => this.handleClick()}
-                >
-                  <img src={picture} className="picture-icon" alt={firstName} />
-                </button>
-              ) : (
-                <FacebookLogin
-                  appId="220764528493510"
-                  autoLoad={false}
-                  fields="name, picture, first_name, last_name,email,birthday,location"
-                  callback={this.signup}
-                  icon="fa-facebook"
-                  scope="public_profile,user_friends,user_actions.books"
-                  size="small"
-                  textButton=" Login"
-                />
-              )}
+          </div>
+
+          {/* DESKTOP */}
+          <div className="Navbar-desktop">
+            <div className="Navbar-Logo-desktop">
+              <Link className="Navbar-link-logo" to="/">
+                <img className="Navbar-logo" src={Logo} alt="Logo" />
+              </Link>
             </div>
+            {hasToken ? (
+              <ul className="Navbar-ul">
+                <Link to="/chatbot">
+                  <li className="Navbar-li">Chatbot</li>
+                </Link>
+              </ul>
+            ) : (
+              ""
+            )}
+            {/* DROPDOWN */}
+            <ul className={"Navbar-dropDown-" + this.state.open}>
+              <div className="Navbar-dropDown-arrow" />
+              <Link
+                to="/dashboard"
+                onclick={() => {
+                  this.handleClick();
+                }}
+              >
+                <li className="Navbar-dropDown-li">Perfil</li>
+              </Link>
+              <a
+                onClick={() => {
+                  this.handleLogout();
+                  this.handleClick();
+                }}
+              >
+                <li className="Navbar-dropDown-li">Sair</li>
+              </a>
+            </ul>
+            {/* FACEBOOKLOGIN */}
+            {hasToken ? (
+              <button
+                className="Navbar-icon-button"
+                onClick={() => this.handleClick()}
+              >
+                <img src={picture} className="picture-icon" alt={firstName} />
+              </button>
+            ) : (
+              <FacebookLogin
+                appId="220764528493510"
+                autoLoad={false}
+                fields="name, picture, first_name, last_name,email,birthday,location"
+                callback={this.signup}
+                icon="fa-facebook"
+                scope="public_profile,user_friends,user_actions.books"
+                size="small"
+                textButton=" Login"
+              />
+            )}
           </div>
         </nav>
       </div>
@@ -178,7 +178,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  console.log(dispatch);
   return {
     actions: bindActionCreators(AuthActions, dispatch),
     login: (data, fcbData) => {

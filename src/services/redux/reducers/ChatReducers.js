@@ -5,7 +5,7 @@ const initialState = {
   value: [],
   error: null,
   chat: [],
-  user:[]
+  user: []
 };
 
 export default function chatReducer(state = initialState, action) {
@@ -14,15 +14,18 @@ export default function chatReducer(state = initialState, action) {
       return {
         ...state,
         user: state.user.concat(action.payload)
-      }
+      };
     case CHAT_BOT:
+      const chat = {};
+      const chatList = state.chat.concat(
+        action.payload.value.map(value => value)
+      );
+      chatList.forEach(item => (chat[item.id] = item));
       return {
         ...state,
         data: action.payload,
         value: action.payload.value,
-        chat: state.chat.concat(
-          action.payload.value.map(value => value)
-        )
+        chat: state.chat.concat(action.payload.value.map(value => value))
       };
     default:
       return state;
