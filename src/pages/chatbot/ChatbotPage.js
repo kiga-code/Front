@@ -34,14 +34,6 @@ class ChatbotPage extends Component {
           }
         })}
 
-        {user.map(chat => {
-          return (
-            <div className="Chatbot-Container-right">
-              <UserCard text={chat.message} />
-            </div>
-          );
-        })}
-
         <div className="Chatbot-Container-down">
           <textarea
             placeholder="Escreva aqui..."
