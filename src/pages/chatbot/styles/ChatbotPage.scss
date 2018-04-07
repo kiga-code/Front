@@ -42,9 +42,8 @@
     &-down {
       display: flex;
       justify-content: center;
-      position: fixed;
-      top: 83%;
-      width: 44%;
+      position: relative;
+      top: 10%;
     }
 
     &-button {

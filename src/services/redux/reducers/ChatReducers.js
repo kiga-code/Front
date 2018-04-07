@@ -16,11 +16,6 @@ export default function chatReducer(state = initialState, action) {
         user: state.user.concat(action.payload)
       };
     case CHAT_BOT:
-      const chat = {};
-      const chatList = state.chat.concat(
-        action.payload.value.map(value => value)
-      );
-      chatList.forEach(item => (chat[item.id] = item));
       return {
         ...state,
         data: action.payload,

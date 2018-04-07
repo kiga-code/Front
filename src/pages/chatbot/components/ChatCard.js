@@ -1,6 +1,7 @@
 import React from "react";
 
 const ChatCard = props => {
+  console.log(props);
   return (
     <div className="Card-Chatbot">
       <div />

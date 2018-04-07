@@ -9,39 +9,17 @@ class ChatbotPage extends Component {
   state = {
     list: []
   };
-  componentWillReceiveProps(nextProps) {
-    if (this.state.list.length === 0) {
-      this.setState({
-        list: this.state.list.concat(
-          Object.keys(nextProps.chatbot).map(key => nextProps.chatbot[key])
-        )
-      });
-    } else {
-      const copyChatbot = { ...nextProps.chatbot };
-      console.log("copyChatbot", copyChatbot);
-      this.state.list.forEach(item => {
-        console.log("item.id", item.id);
-        item.id && delete copyChatbot[item.id];
-      });
-      console.log("copyChatbot", copyChatbot);
-      this.setState({
-        list: this.state.list.concat(
-          Object.keys(copyChatbot)
-            .map(key => nextProps.chatbot[key])
-            .filter()
-        )
-      });
-    }
-  }
+
   componentDidMount() {
     this.props.chatBot();
   }
   render() {
     const { chatValue, chatbot, user } = this.props;
+    let invalido = ["Tente novamente"];
     return (
       <div className="Chatbot-Container">
-        {this.state.list.map(chat => {
-          if (chat.option) {
+        {chatValue.map(chat => {
+          if (chatValue.length > 0) {
             return (
               <div className="Chatbot-Container-left">
                 <ChatCard number={chat.option} text={chat.message} />
@@ -49,11 +27,19 @@ class ChatbotPage extends Component {
             );
           } else {
             return (
-              <div className="Chatbot-Container-right">
-                <UserCard text={chat.id} />
+              <div className="Chatbot-Container-left">
+                <ChatCard text={invalido} />
               </div>
             );
           }
+        })}
+
+        {user.map(chat => {
+          return (
+            <div className="Chatbot-Container-right">
+              <UserCard text={chat.message} />
+            </div>
+          );
         })}
 
         <div className="Chatbot-Container-down">
@@ -76,7 +62,7 @@ class ChatbotPage extends Component {
               if (options.length > 0) {
                 this.props.onSendChat(options[0]);
               } else {
-                console.log("Invalida");
+               
               }
               this.chatArea.value = "";
               this.setState({ list: this.state.list.concat(options[0]) });
